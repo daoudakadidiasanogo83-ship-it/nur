@@ -1,0 +1,9 @@
+[
+{"id":"i1","cat":"matin","ar":"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ","fr":"Gloire et louange à Allah (100 fois).","src":"Al-Bukhari et Muslim"},
+{"id":"i2","cat":"matin","ar":"بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ","fr":"Au nom d'Allah, avec le nom duquel rien ne peut nuire, ni sur terre ni dans le ciel. Il est l'Audient, l'Omniscient (3 fois).","src":"Abou Dawoud, At-Tirmidhi"},
+{"id":"i3","cat":"soir","ar":"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ","fr":"Gloire et louange à Allah (100 fois).","src":"Muslim"},
+{"id":"i4","cat":"soir","ar":"بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ","fr":"Au nom d'Allah, avec le nom duquel rien ne peut nuire (3 fois).","src":"Abou Dawoud, At-Tirmidhi"},
+{"id":"i5","cat":"prière","ar":"أَسْتَغْفِرُ اللَّهَ","fr":"Je demande pardon à Allah (3 fois, après la prière).","src":"Muslim"},
+{"id":"i6","cat":"prière","ar":"لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ","fr":"Il n'y a de divinité qu'Allah, Unique, sans associé. À Lui la royauté et la louange, Il est capable de toute chose.","src":"Al-Bukhari et Muslim"},
+{"id":"i7","cat":"prière","ar":"اللَّهُمَّ أَعِنِّي عَلَىٰ ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ","fr":"Ô Allah, aide-moi à T'invoquer, à Te remercier et à bien T'adorer.","src":"Abou Dawoud"}
+]
