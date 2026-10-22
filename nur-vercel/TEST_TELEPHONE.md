@@ -3,10 +3,14 @@ Ouvre l'adresse de ton site Vercel (ou le lien d'aperçu) dans Chrome (Android) 
 
 ## 1. Sans rien installer
 - [ ] Accueil : la prochaine prière et le compte à rebours s'affichent. Paramètres > choisis ta ville > les 5 horaires changent.
-- [ ] Compare avec ta mosquée : écart de quelques minutes acceptable ? Sinon essaie une autre méthode (Paramètres).
-- [ ] Qibla : touche « Activer la boussole », accepte. Tourne-toi : la flèche suit. Compare avec une autre boussole.
-- [ ] Coran : ouvre une sourate. Tasbih : compte, change l'objectif. Invocations : mets une étoile, ouvre « Favoris ».
-- [ ] Audio : touche ▶ sur une sourate (Alafasy). Le son démarre ? Touche ⬇ sur une autre.
+- [ ] À Bamako, Dhuhr doit afficher 14:00 et Asr 16:00 (Paramètres > Heures de ma mosquée pour changer).
+- [ ] Compare avec ta mosquée. Écart ? Essaie une autre méthode, ou décale la prière dans Paramètres > Ajuster les horaires.
+- [ ] Qibla : touche « Activer la boussole », accepte. Tourne-toi : le cadran tourne et passe au vert face à la Qibla. Compare avec une autre boussole.
+- [ ] Coran : ouvre une sourate. Tasbih : compte, change l'objectif. Invocations : mets une étoile, masque/affiche Phonétique et Traduction, touche 🔊 (voix arabe installée ?).
+- [ ] Audio (sur le site déployé, pas dans l'aperçu) : touche ▶ sur une sourate : le son démarre ? Re-touche : pause ? À la fin, la suivante démarre seule ?
+- [ ] Verrouille l'écran pendant la lecture : les commandes lecture/pause apparaissent-elles ?
+- [ ] ⬇ sur une sourate : le fichier est-il enregistré sur le téléphone (Téléchargements / Fichiers) ?
+- [ ] Coran : ouvre une sourate autre que Al-Fâtiha (connexion nécessaire la 1re fois).
 - [ ] Audio > « Mes fichiers » : ajoute un MP3 nommé 001.mp3, lis-le en mode avion.
 - [ ] Plus > Soutenir NUR : le texte s'affiche bien.
 

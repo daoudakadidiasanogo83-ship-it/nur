@@ -4,37 +4,64 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>NUR</title>
-<meta name="theme-color" content="#0f2a3d">
+<meta name="theme-color" content="#6c5ce7">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Amiri+Quran&display=swap">
 <link rel="manifest" href="/static/manifest.webmanifest">
-<link rel="icon" href="/static/icon.svg">
+<link rel="icon" href="/static/icon-192.png">
 <link rel="apple-touch-icon" href="/static/icon-192.png">
 <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 <main>
 <section id="home">
+ <div class="brand"><img src="/static/logo.png" alt="" width="40" height="40"><b>NUR</b><span class="muted small">Prière · Coran · Qibla</span></div>
  <div id="install" class="card" hidden><p id="instTxt"></p><button id="instBtn" hidden>Installer NUR</button> <button id="instNo" class="ghost">Plus tard</button></div>
- <p id="hijri" class="muted"></p>
- <div class="hero">
-  <svg viewBox="0 0 300 130" aria-hidden="true"><path d="M20 120 A130 130 0 0 1 280 120" class="arc"/><circle id="sun" r="9" cx="20" cy="120"/></svg>
-  <p class="muted" id="nextLabel">Prochaine prière</p>
-  <h1 id="nextName">--</h1><p id="nextTime" class="big">--:--</p><p id="countdown" class="muted"></p>
+ <div class="hero" id="hero" data-p="fajr">
+  <span class="pill" id="where"></span> <span class="pill" id="hijri"></span>
+  <p class="lbl" id="nextLabel">Prochaine prière</p>
+  <h1 id="nextName">--</h1><p id="nextTime" class="big">--:--</p><span id="countdown" class="pill"></span>
  </div>
- <p class="muted" id="where"></p>
- <div class="grid">
-  <a href="#prayers">Prières</a><a href="#quran">Coran</a><a href="#qibla">Qibla</a><a href="#tasbih">Tasbih</a><a href="#dhikr">Invocations</a><a href="#ramadan">Ramadan</a>
+ <div class="strip" id="strip"></div>
+ <div class="tiles">
+  <a class="t t1" href="#prayers"><i>🕌</i>Prières</a><a class="t t2" href="#quran"><i>📖</i>Coran</a>
+  <a class="t t3" href="#qibla"><i>🧭</i>Qibla</a><a class="t t4" href="#tasbih"><i>📿</i>Tasbih</a>
+  <a class="t t5" href="#dhikr"><i>🤲</i>Invocations</a><a class="t t6" href="#ramadan"><i>🌙</i>Ramadan</a>
  </div>
 </section>
 <section id="prayers"><h2>Horaires de prière</h2><p class="muted" id="pMeta"></p><ul id="pList" class="rows"></ul>
  <p class="muted small">Les horaires sont calculés sur l'appareil à partir de votre ville et de la méthode choisie dans les paramètres. Ils peuvent différer de quelques minutes de ceux de votre mosquée.</p></section>
-<section id="quran"><h2>Coran</h2><div id="qHead"></div><input id="qSearch" type="search" placeholder="Chercher une sourate"><ul id="qList" class="rows"></ul><div id="qRead" hidden></div></section>
-<section id="audio"><h2>Récitations</h2><div id="aList"></div><div id="aPlayer" hidden><p id="aNow"></p><audio id="aEl" controls preload="none"></audio></div></section>
-<section id="qibla"><h2>Qibla</h2><div class="compass"><div id="needle"></div><span>🕋</span></div>
- <p class="big" id="qDeg">--</p><p class="muted" id="qHint">Direction calculée depuis votre ville.</p><button id="qBtn">Activer la boussole</button></section>
-<section id="dhikr"><h2>Invocations</h2><div class="tabs" id="dTabs"></div><div id="dList"></div></section>
-<section id="tasbih"><h2>Tasbih</h2><button id="tapBtn" aria-label="Compter"><span id="tCount">0</span></button>
- <p class="muted">Total : <b id="tTotal">0</b> · objectif <select id="tGoal"><option>33</option><option>99</option><option>100</option><option value="0">aucun</option></select></p>
- <button id="tReset" class="ghost">Remettre à zéro</button></section>
+<section id="quran"><h2>Coran</h2><input id="qSearch" type="search" placeholder="Chercher une sourate"><ul id="qList" class="rows"></ul><div id="qRead" hidden></div></section>
+<section id="audio"><h2>Récitations</h2><div id="aList"></div><div id="aPlayer" class="card" hidden><p id="aNow"></p>
+  <input id="aSeek" type="range" min="0" max="1000" value="0" aria-label="Position"><p class="muted small" id="aTime">0:00 / 0:00</p>
+  <div class="ctl"><button id="aPrev" aria-label="Précédent">⏮</button><button id="aPlay" aria-label="Lecture">▶</button><button id="aNext" aria-label="Suivant">⏭</button><button id="aSave" class="ghost" aria-label="Enregistrer le fichier sur le téléphone">⬇</button></div>
+  <label class="row"><input type="checkbox" id="aAuto" checked> Enchaîner les sourates automatiquement</label>
+  <p class="muted small" id="aMsg2"></p><audio id="aEl" preload="none"></audio></div></section>
+<section id="qibla"><h2>Qibla</h2>
+ <div class="qwrap"><svg viewBox="0 0 300 300" role="img" aria-label="Boussole de la Qibla">
+  <defs><linearGradient id="qg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6c5ce7"/><stop offset="1" stop-color="#ff6b9d"/></linearGradient></defs>
+  <circle cx="150" cy="150" r="142" class="qring"/>
+  <g id="dial"><g id="ticks"></g>
+   <g id="qMark"><line x1="150" y1="150" x2="150" y2="62" class="qline"/><circle cx="150" cy="44" r="22" class="qbadge"/><text x="150" y="53" text-anchor="middle" font-size="26">🕋</text></g></g>
+  <path d="M141 2h18l-9 16z" fill="url(#qg)"/><circle cx="150" cy="150" r="9" class="qhub"/>
+ </svg></div>
+ <p id="qHint" class="qhint">Direction calculée depuis votre ville.</p>
+ <div class="qstats"><div class="card"><span class="muted small">Direction</span><b id="qDeg">--</b></div><div class="card"><span class="muted small">Distance de la Kaaba</span><b id="qKm">--</b></div></div>
+ <button id="qBtn">Activer la boussole</button>
+ <p class="muted small">Pour plus de précision, éloignez-vous des objets métalliques et dessinez un « 8 » avec le téléphone.</p></section>
+<section id="dhikr"><h2>Invocations</h2><div class="tabs" id="dTabs"></div><div class="tabs" id="dShow"></div><div id="dList"></div></section>
+<section id="tasbih"><h2>Tasbih</h2>
+ <div class="tabs" id="tzTabs"></div>
+ <p class="ar tzar" id="tzAr"></p><p class="muted center" id="tzFr"></p>
+ <div class="ring"><svg viewBox="0 0 120 120" aria-hidden="true"><defs><linearGradient id="tg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--c1)"/><stop offset="1" style="stop-color:var(--c2)"/></linearGradient></defs>
+  <circle class="rb" cx="60" cy="60" r="52"/><circle class="rf" id="tzRing" cx="60" cy="60" r="52"/></svg>
+  <button id="tapBtn" aria-label="Compter"><span id="tCount">0</span><small id="tGoalTxt"></small></button></div>
+ <p id="tMsg" class="tmsg">Touchez le cercle pour commencer</p>
+ <div class="qstats tstats"><div class="card"><b id="tToday">0</b><span class="muted small">aujourd'hui</span></div><div class="card"><b id="tCycles">0</b><span class="muted small">cycles</span></div><div class="card"><b id="tStreak">0</b><span class="muted small">jours de suite</span></div></div>
+ <div class="tctl"><label>Objectif<select id="tGoal"><option value="33">33</option><option value="99">99</option><option value="100">100</option><option value="0">Libre</option></select></label>
+ <label class="row"><input type="checkbox" id="tVib"> Vibration</label><label class="row"><input type="checkbox" id="tSnd"> Son discret</label></div>
+ <button id="tReset" class="ghost">Remettre ce dhikr à zéro</button>
+ <p class="muted small">Total cumulé : <b id="tTotal">0</b></p></section>
 <section id="ramadan"><h2>Ramadan</h2><p class="muted" id="rMeta"></p><ul id="rList" class="rows"></ul></section>
 <section id="settings"><h2>Paramètres</h2>
  <label>Ville<select id="sCity"></select></label>
@@ -43,8 +70,16 @@
  <label>Asr<select id="sAsr"><option value="1">Standard (chaféite, malikite, hanbalite)</option><option value="2">Hanafite</option></select></label>
  <label>Thème<select id="sTheme"><option value="auto">Automatique</option><option value="light">Clair</option><option value="dark">Sombre</option></select></label>
  <label>Langue de traduction<select id="sLang"><option value="fr">Français</option></select></label>
+ <h3>Heures de ma mosquée</h3>
+ <p class="muted small">Si votre mosquée prie à heure fixe (par exemple Dhuhr 14:00, Asr 16:00), indiquez-la : elle remplace l'heure calculée. Laissez vide pour garder le calcul.</p>
+ <div class="adj"><label>Fajr<input type="time" id="fx_fajr"></label><label>Dhuhr<input type="time" id="fx_dhuhr"></label><label>Asr<input type="time" id="fx_asr"></label><label>Maghrib<input type="time" id="fx_maghrib"></label><label>Isha<input type="time" id="fx_isha"></label></div>
+ <p><button class="ghost" id="fxPreset">Dhuhr 14:00 · Asr 16:00</button> <button class="ghost" id="fxClear">Tout recalculer</button></p>
+ <h3>Ajuster les horaires (minutes)</h3>
+ <p class="muted small">Si votre mosquée prie plus tôt ou plus tard que l'heure calculée, décalez ici. Exemple : +20 sur Dhuhr.</p>
+ <div class="adj"><label>Fajr<input type="number" id="adj_fajr" min="-120" max="120" step="1" inputmode="numeric"></label><label>Dhuhr<input type="number" id="adj_dhuhr" min="-120" max="120" step="1" inputmode="numeric"></label><label>Asr<input type="number" id="adj_asr" min="-120" max="120" step="1" inputmode="numeric"></label><label>Maghrib<input type="number" id="adj_maghrib" min="-120" max="120" step="1" inputmode="numeric"></label><label>Isha<input type="number" id="adj_isha" min="-120" max="120" step="1" inputmode="numeric"></label></div>
  <label class="row"><input type="checkbox" id="sNotif"> Rappel à l'heure de chaque prière</label><p class="muted small" id="nHint"></p>
- <p class="muted small">Aucun compte requis. Vos réglages, favoris et compteurs restent sur cet appareil.</p></section>
+ <p class="muted small">Aucun compte requis. Vos réglages, favoris et compteurs restent sur cet appareil.</p>
+ <p class="muted small">NUR · version 3 · design coloré</p></section>
 <section id="don"><h2>Soutenir NUR</h2>
  <p>NUR est gratuite, sans publicité et sans compte. Elle est là pour accompagner votre prière, votre lecture du Coran et vos invocations, chaque jour.</p>
  <p>Si elle vous est utile, pensez à elle dans vos dons. Votre soutien permet :</p>
@@ -54,12 +89,17 @@
  <h3>Comment donner</h3><ul id="donList" class="rows"></ul><p class="muted small" id="donNote"></p>
  <p class="muted small" id="donTr"></p>
  <p>Que Dieu vous récompense et vous facilite le bien.</p></section>
-<section id="more"><h2>Plus</h2><div class="grid">
- <a href="#audio">Audio</a><a href="#qibla">Qibla</a><a href="#dhikr">Invocations</a><a href="#tasbih">Tasbih</a><a href="#ramadan">Ramadan</a><a href="#settings">Paramètres</a></div>
+<section id="more"><h2>Plus</h2><div class="tiles">
+ <a class="t t7" href="#audio"><i>🎧</i>Audio</a><a class="t t3" href="#qibla"><i>🧭</i>Qibla</a>
+ <a class="t t5" href="#dhikr"><i>🤲</i>Invocations</a><a class="t t4" href="#tasbih"><i>📿</i>Tasbih</a>
+ <a class="t t6" href="#ramadan"><i>🌙</i>Ramadan</a><a class="t t8" href="#settings"><i>⚙️</i>Paramètres</a></div>
  <a class="card" href="#don" style="display:block;color:inherit;text-decoration:none">♥ <b>Soutenir NUR</b><br><span class="muted small">Faire évoluer l'application et aider les plus démunis</span></a></section>
 </main>
 <nav>
- <a href="#home">Accueil</a><a href="#prayers">Prières</a><a href="#quran">Coran</a><a href="#more">Plus</a>
+ <a href="#home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Accueil</span></a>
+ <a href="#prayers"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Prières</span></a>
+ <a href="#quran"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/></svg><span>Coran</span></a>
+ <a href="#more"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></svg><span>Plus</span></a>
 </nav>
 <script src="/static/vendor/gsap.min.js" onerror="var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';s.crossOrigin='anonymous';document.head.appendChild(s)"></script>
 <script src="/static/app.js"></script>

@@ -24,18 +24,19 @@ def kv(*cmd):
     return out["result"]
 
 
-def gid_of(lat, lng, tz, method, asr):
+def gid_of(lat, lng, tz, method, asr, adj=(0, 0, 0, 0, 0), fixed=("",) * 5):
     """Les abonnés d'une même zone (0,1°, soit ~11 km) partagent un groupe : 1 calcul et 1 lecture par minute pour tous."""
-    return f"{lat:.1f}:{lng:.1f}:{tz}:{method}:{asr}"
+    return f"{lat:.1f}:{lng:.1f}:{tz}:{method}:{asr}:{'.'.join(map(str, adj))}:{'.'.join(f.replace(':', '') for f in fixed)}"
 
 
-def save(endpoint, p256dh, auth, lat, lng, tz, method, asr):
-    gid = gid_of(lat, lng, tz, method, asr)
+def save(endpoint, p256dh, auth, lat, lng, tz, method, asr, adj=(0, 0, 0, 0, 0), fixed=("",) * 5):
+    adj, fixed = tuple(adj), tuple(fixed)
+    gid = gid_of(lat, lng, tz, method, asr, adj, fixed)
     old = kv("HGET", EP, endpoint)
     if old and old != gid:
         kv("HDEL", G + old, endpoint)
     if not kv("HGET", GROUPS, gid):
-        kv("HSET", GROUPS, gid, json.dumps({"lat": round(lat, 1), "lng": round(lng, 1), "tz": tz, "method": method, "asr": asr, "last": []}))
+        kv("HSET", GROUPS, gid, json.dumps({"lat": round(lat, 1), "lng": round(lng, 1), "tz": tz, "method": method, "asr": asr, "adj": list(adj), "fixed": list(fixed), "last": []}))
     kv("HSET", G + gid, endpoint, json.dumps({"p256dh": p256dh, "auth": auth}))
     kv("HSET", EP, endpoint, gid)
 
@@ -47,7 +48,7 @@ def remove(endpoint):
     kv("HDEL", EP, endpoint)
 
 
-def prayer_times(day, lat, lng, method="MWL", asr=1):
+def prayer_times(day, lat, lng, method="MWL", asr=1, adj=(0, 0, 0, 0, 0), fixed=("",) * 5, tz="UTC"):
     """Même algorithme que public/static/app.js. Retourne des datetimes UTC."""
     jd = calendar.timegm((day.year, day.month, day.day, 12, 0, 0)) / 86400 + 2440587.5
     n = jd - 2451545
@@ -70,7 +71,12 @@ def prayer_times(day, lat, lng, method="MWL", asr=1):
     h = {"fajr": noon - T(fa), "dhuhr": noon, "asr": noon + T(-asr_alt), "maghrib": noon + T(0.833)}
     h["isha"] = h["maghrib"] + 1.5 if ia == "90" else noon + T(ia)
     base = datetime(day.year, day.month, day.day, tzinfo=timezone.utc)
-    return {k: base + timedelta(hours=v) for k, v in h.items()}
+    out = {k: base + timedelta(hours=v, minutes=adj[i]) for i, (k, v) in enumerate(h.items())}   # h : fajr, dhuhr, asr, maghrib, isha
+    for i, k in enumerate(out):   # heure fixe de la mosquée : remplace l'heure calculée
+        if fixed[i]:
+            hh, mm = map(int, fixed[i].split(":"))
+            out[k] = datetime(day.year, day.month, day.day, hh, mm, tzinfo=ZoneInfo(tz)).astimezone(timezone.utc)
+    return out
 
 
 def due(now, window=150):
@@ -80,7 +86,7 @@ def due(now, window=150):
     for gid, raw in zip(flat[::2], flat[1::2]):
         meta = json.loads(raw)
         day = now.astimezone(ZoneInfo(meta["tz"])).date()
-        for name, t in prayer_times(day, meta["lat"], meta["lng"], meta["method"], meta["asr"]).items():
+        for name, t in prayer_times(day, meta["lat"], meta["lng"], meta["method"], meta["asr"], meta.get("adj", [0] * 5), meta.get("fixed", [""] * 5), meta["tz"]).items():
             key = f"{day}:{name}"
             if 0 <= (now - t).total_seconds() < window and key not in meta.get("last", []):
                 out.append((gid, meta, name, key))

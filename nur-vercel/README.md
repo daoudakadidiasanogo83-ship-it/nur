@@ -37,3 +37,23 @@ Texte dans `templates/index.html` (section « Soutenir NUR »), à adapter à ta
      "transparence":"Chaque trimestre, nous publierons ici le total reçu et son usage."}
 Avec `url` (https) : bouton « Donner ». Sans `url` : bouton « Copier » le numéro. Ne promets dans le texte que ce que tu tiendras (part pour les démunis, compte rendu).
 Collecter des fonds pour des personnes dans le besoin peut demander un cadre légal (association) selon ton pays : renseigne-toi avant le lancement.
+
+## Coran : les 114 sourates
+Les 114 noms sont intégrés (aucun texte n'est embarqué dans le ZIP). Le texte d'une sourate se charge à la première ouverture depuis Al Quran Cloud (api.alquran.cloud, texte uthmani + traduction Hamidullah), puis reste disponible sans connexion sur l'appareil. Pour avoir tout le texte dans l'application sans dépendre de ce service : `python tools/import_quran.py` (le fichier importé est prioritaire). Dans les deux cas, fais relire le texte avant la publication.
+
+## Heures de la mosquée et ajustements
+Paramètres > « Heures de ma mosquée » : heure fixe par prière (ex. Dhuhr 14:00, Asr 16:00), qui remplace l'heure calculée dans l'application et dans les rappels. Par défaut, les nouveaux utilisateurs de **Bamako** reçoivent Dhuhr 14:00 et Asr 16:00 (voir `LOCAL_DEFAULTS` dans `public/static/app.js` pour modifier ou retirer). « Ajuster les horaires » : décalage en minutes (de -120 à +120) pour les prières laissées en calcul.
+
+## Livraison
+Toujours décompresser `nur-vercel.zip` entièrement avant de lancer ou de publier. Le lien d'aperçu bloque l'écoute en ligne et le téléchargement (restriction de l'hébergeur de l'aperçu) : tester l'audio sur le site déployé.
+
+## Logo
+Basé sur l'image du dôme vert fournie, recadrée, agrandie, nettoyée (netteté, bords propres) : `public/static/logo.png` (fond transparent, utilisé en haut de l'accueil) et `public/static/icon-192.png` / `icon-512.png` (icône de l'application : dôme sur dégradé violet avec halo, dans la zone sûre des icônes rondes). Les versions grand format sont fournies à part (`logo-nur.png`, `icon-nur.png`). Pour changer l'image, remplacer ces fichiers.
+
+## Tasbih, Qibla, invocations
+- Tasbih : 5 dhikr au choix (couleurs propres), anneau de progression, messages d'encouragement, effet à chaque cycle, vibration et son discret en option, compteurs du jour, cycles et jours de suite (conservés sur l'appareil).
+- Qibla : cadran qui tourne avec le téléphone, Kaaba repérée sur le cadran, distance en km, signal vert et vibration quand on fait face à la Qibla. Sans capteur : direction depuis le nord.
+- Invocations : afficher ou masquer arabe, phonétique et traduction ; bouton 🔊 de lecture par la voix de synthèse arabe de l'appareil (si installée). Ce n'est pas une récitation humaine : la prononciation peut être imparfaite.
+
+## Invocations (20)
+Catégories : matin, soir, sommeil, repas, sorties, prière, quotidien, favoris. Fichier : `public/data/invocations.json` (champs : id, cat, t = titre, ar, ph = phonétique, fr = traduction, src = source). Les textes, la phonétique et les attributions de sources ont été saisis sans relecture savante : **à faire relire par une personne qualifiée avant publication**. Pour en ajouter, copier une entrée et changer l'id.

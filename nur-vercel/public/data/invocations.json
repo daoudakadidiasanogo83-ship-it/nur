@@ -1,9 +1,182 @@
 [
-{"id":"i1","cat":"matin","ar":"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ","fr":"Gloire et louange à Allah (100 fois).","src":"Al-Bukhari et Muslim"},
-{"id":"i2","cat":"matin","ar":"بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ","fr":"Au nom d'Allah, avec le nom duquel rien ne peut nuire, ni sur terre ni dans le ciel. Il est l'Audient, l'Omniscient (3 fois).","src":"Abou Dawoud, At-Tirmidhi"},
-{"id":"i3","cat":"soir","ar":"سُبْحَانَ اللَّهِ وَبِحَمْدِهِ","fr":"Gloire et louange à Allah (100 fois).","src":"Muslim"},
-{"id":"i4","cat":"soir","ar":"بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ","fr":"Au nom d'Allah, avec le nom duquel rien ne peut nuire (3 fois).","src":"Abou Dawoud, At-Tirmidhi"},
-{"id":"i5","cat":"prière","ar":"أَسْتَغْفِرُ اللَّهَ","fr":"Je demande pardon à Allah (3 fois, après la prière).","src":"Muslim"},
-{"id":"i6","cat":"prière","ar":"لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ","fr":"Il n'y a de divinité qu'Allah, Unique, sans associé. À Lui la royauté et la louange, Il est capable de toute chose.","src":"Al-Bukhari et Muslim"},
-{"id":"i7","cat":"prière","ar":"اللَّهُمَّ أَعِنِّي عَلَىٰ ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ","fr":"Ô Allah, aide-moi à T'invoquer, à Te remercier et à bien T'adorer.","src":"Abou Dawoud"}
+ {
+  "id": "i1",
+  "cat": "matin",
+  "ar": "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",
+  "fr": "Gloire et louange à Allah (100 fois).",
+  "src": "Al-Bukhari et Muslim",
+  "ph": "Subhâna Llâhi wa bi-hamdih",
+  "t": "Tasbîh du matin"
+ },
+ {
+  "id": "i2",
+  "cat": "matin",
+  "ar": "بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ",
+  "fr": "Au nom d'Allah, avec le nom duquel rien ne peut nuire, ni sur terre ni dans le ciel. Il est l'Audient, l'Omniscient (3 fois).",
+  "src": "Abou Dawoud, At-Tirmidhi",
+  "ph": "Bismi Llâhi lladhî lâ yadurru ma’a ismihi shay’un fi l-ardi wa lâ fi s-samâ’i wa huwa s-samî’u l-’alîm",
+  "t": "Protection du matin"
+ },
+ {
+  "id": "i3",
+  "cat": "soir",
+  "ar": "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ",
+  "fr": "Gloire et louange à Allah (100 fois).",
+  "src": "Muslim",
+  "ph": "Subhâna Llâhi wa bi-hamdih",
+  "t": "Tasbîh du soir"
+ },
+ {
+  "id": "i4",
+  "cat": "soir",
+  "ar": "بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ",
+  "fr": "Au nom d'Allah, avec le nom duquel rien ne peut nuire (3 fois).",
+  "src": "Abou Dawoud, At-Tirmidhi",
+  "ph": "Bismi Llâhi lladhî lâ yadurru ma’a ismihi shay’un fi l-ardi wa lâ fi s-samâ’i wa huwa s-samî’u l-’alîm",
+  "t": "Protection du soir"
+ },
+ {
+  "id": "i5",
+  "cat": "prière",
+  "ar": "أَسْتَغْفِرُ اللَّهَ",
+  "fr": "Je demande pardon à Allah (3 fois, après la prière).",
+  "src": "Muslim",
+  "ph": "Astaghfiru Llâh",
+  "t": "Après la prière"
+ },
+ {
+  "id": "i6",
+  "cat": "prière",
+  "ar": "لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ",
+  "fr": "Il n'y a de divinité qu'Allah, Unique, sans associé. À Lui la royauté et la louange, Il est capable de toute chose.",
+  "src": "Al-Bukhari et Muslim",
+  "ph": "Lâ ilâha illâ Llâhu wahdahu lâ sharîka lah, lahu l-mulku wa lahu l-hamdu wa huwa ’alâ kulli shay’in qadîr",
+  "t": "Après la prière (tahlîl)"
+ },
+ {
+  "id": "i7",
+  "cat": "prière",
+  "ar": "اللَّهُمَّ أَعِنِّي عَلَىٰ ذِكْرِكَ وَشُكْرِكَ وَحُسْنِ عِبَادَتِكَ",
+  "fr": "Ô Allah, aide-moi à T'invoquer, à Te remercier et à bien T'adorer.",
+  "src": "Abou Dawoud",
+  "ph": "Allâhumma a’innî ’alâ dhikrika wa shukrika wa husni ’ibâdatika",
+  "t": "Aide pour l’adoration"
+ },
+ {
+  "id": "i8",
+  "cat": "repas",
+  "t": "Avant de manger",
+  "ar": "بِسْمِ اللَّهِ",
+  "ph": "Bismi Llâh",
+  "fr": "Au nom d’Allah.",
+  "src": "Abou Dawoud, At-Tirmidhi"
+ },
+ {
+  "id": "i9",
+  "cat": "repas",
+  "t": "Après avoir mangé",
+  "ar": "الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنِي هَذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ",
+  "ph": "Al-hamdu li-Llâhi lladhî at’amanî hâdhâ wa razaqanîhi min ghayri hawlin minnî wa lâ quwwa",
+  "fr": "Louange à Allah qui m’a nourri de ceci et me l’a accordé, sans force ni puissance de ma part.",
+  "src": "Abou Dawoud, At-Tirmidhi"
+ },
+ {
+  "id": "i10",
+  "cat": "sommeil",
+  "t": "Au coucher",
+  "ar": "بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",
+  "ph": "Bismika Llâhumma amûtu wa ahyâ",
+  "fr": "C’est en Ton nom, ô Allah, que je meurs et que je vis.",
+  "src": "Al-Bukhari"
+ },
+ {
+  "id": "i11",
+  "cat": "sommeil",
+  "t": "Au réveil",
+  "ar": "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+  "ph": "Al-hamdu li-Llâhi lladhî ahyânâ ba’da mâ amâtanâ wa ilayhi n-nushûr",
+  "fr": "Louange à Allah qui nous a rendu la vie après nous avoir fait mourir, et c’est vers Lui la résurrection.",
+  "src": "Al-Bukhari"
+ },
+ {
+  "id": "i12",
+  "cat": "sorties",
+  "t": "En quittant la maison",
+  "ar": "بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ",
+  "ph": "Bismi Llâh, tawakkaltu ’alâ Llâh, wa lâ hawla wa lâ quwwata illâ bi-Llâh",
+  "fr": "Au nom d’Allah, je m’en remets à Allah ; il n’y a de force ni de puissance qu’en Allah.",
+  "src": "Abou Dawoud, At-Tirmidhi"
+ },
+ {
+  "id": "i13",
+  "cat": "sorties",
+  "t": "En entrant à la mosquée",
+  "ar": "اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",
+  "ph": "Allâhumma ftah lî abwâba rahmatik",
+  "fr": "Ô Allah, ouvre-moi les portes de Ta miséricorde.",
+  "src": "Muslim"
+ },
+ {
+  "id": "i14",
+  "cat": "sorties",
+  "t": "En sortant de la mosquée",
+  "ar": "اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ",
+  "ph": "Allâhumma innî as’aluka min fadlik",
+  "fr": "Ô Allah, je Te demande de Ta grâce.",
+  "src": "Muslim"
+ },
+ {
+  "id": "i15",
+  "cat": "sorties",
+  "t": "En voyage (monter dans un véhicule)",
+  "ar": "سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ وَإِنَّا إِلَى رَبِّنَا لَمُنْقَلِبُونَ",
+  "ph": "Subhâna lladhî sakhkhara lanâ hâdhâ wa mâ kunnâ lahu muqrinîn, wa innâ ilâ rabbinâ la-munqalibûn",
+  "fr": "Gloire à Celui qui nous a soumis ceci alors que nous n’étions pas capables de le dominer, et c’est vers notre Seigneur que nous retournerons.",
+  "src": "Coran 43:13-14 ; Muslim"
+ },
+ {
+  "id": "i16",
+  "cat": "quotidien",
+  "t": "Avant d'entrer aux toilettes",
+  "ar": "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَائِثِ",
+  "ph": "Allâhumma innî a’ûdhu bika mina l-khubuthi wa l-khabâ’ith",
+  "fr": "Ô Allah, je cherche refuge auprès de Toi contre les démons mâles et femelles.",
+  "src": "Al-Bukhari et Muslim"
+ },
+ {
+  "id": "i17",
+  "cat": "quotidien",
+  "t": "Quand on éternue",
+  "ar": "الْحَمْدُ لِلَّهِ",
+  "ph": "Al-hamdu li-Llâh",
+  "fr": "Louange à Allah.",
+  "src": "Al-Bukhari"
+ },
+ {
+  "id": "i18",
+  "cat": "quotidien",
+  "t": "Répondre à quelqu'un qui éternue",
+  "ar": "يَرْحَمُكَ اللَّهُ",
+  "ph": "Yarhamuka Llâh",
+  "fr": "Qu’Allah te fasse miséricorde.",
+  "src": "Al-Bukhari"
+ },
+ {
+  "id": "i19",
+  "cat": "quotidien",
+  "t": "Pour ce monde et l'autre",
+  "ar": "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+  "ph": "Rabbanâ âtinâ fi d-dunyâ hasanatan wa fi l-âkhirati hasanatan wa qinâ ’adhâba n-nâr",
+  "fr": "Notre Seigneur, accorde-nous une belle part ici-bas, une belle part dans l’au-delà, et protège-nous du châtiment du Feu.",
+  "src": "Coran 2:201"
+ },
+ {
+  "id": "i20",
+  "cat": "quotidien",
+  "t": "Pour la science",
+  "ar": "رَبِّ زِدْنِي عِلْمًا",
+  "ph": "Rabbi zidnî ’ilmâ",
+  "fr": "Seigneur, accrois ma science.",
+  "src": "Coran 20:114"
+ }
 ]

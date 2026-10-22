@@ -1,5 +1,5 @@
 """NUR sur Vercel : le contenu est statique (public/), Flask ne gère que les rappels push."""
-import hmac, os
+import hmac, os, re
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import available_timezones
@@ -33,15 +33,17 @@ def push_subscribe():
     k = sub.get("keys") or {}
     try:
         lat, lng, asr = float(j["lat"]), float(j["lng"]), int(j.get("asr", 1))
+        adj = [int(x) for x in j.get("adj", [0] * 5)]
+        fixed = [str(x) for x in j.get("fixed", [""] * 5)]
         ok = (str(sub.get("endpoint", "")).startswith("https://") and k.get("p256dh") and k.get("auth")
               and -90 <= lat <= 90 and -180 <= lng <= 180 and asr in (1, 2)
-              and j.get("method") in push.METHODS and j.get("tz") in available_timezones())
+              and len(adj) == 5 and all(-120 <= x <= 120 for x in adj) and len(fixed) == 5 and all(re.fullmatch(r"|([01]\d|2[0-3]):[0-5]\d", f) for f in fixed) and j.get("method") in push.METHODS and j.get("tz") in available_timezones())
     except (KeyError, TypeError, ValueError):
         ok = False
     if not ok:
         abort(400)
     try:
-        push.save(sub["endpoint"], k["p256dh"], k["auth"], lat, lng, j["tz"], j["method"], asr)
+        push.save(sub["endpoint"], k["p256dh"], k["auth"], lat, lng, j["tz"], j["method"], asr, adj, fixed)
     except Exception:
         abort(503)
     return {"ok": True}
