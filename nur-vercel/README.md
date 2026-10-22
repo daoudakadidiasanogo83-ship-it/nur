@@ -57,3 +57,9 @@ Basé sur l'image du dôme vert fournie, recadrée, agrandie, nettoyée (nettet�
 
 ## Invocations (20)
 Catégories : matin, soir, sommeil, repas, sorties, prière, quotidien, favoris. Fichier : `public/data/invocations.json` (champs : id, cat, t = titre, ar, ph = phonétique, fr = traduction, src = source). Les textes, la phonétique et les attributions de sources ont été saisis sans relecture savante : **à faire relire par une personne qualifiée avant publication**. Pour en ajouter, copier une entrée et changer l'id.
+
+## Installation de l'application (toujours visible)
+Bouton « ⬇ Installer » en haut de chaque page, et carte « Installer NUR sur votre appareil » sur l'accueil (onglets iPhone / Android / Ordinateur, l'appareil détecté est présélectionné, bouton « Installer maintenant » quand le navigateur le permet). Un message prévient quand NUR est ouverte dans le navigateur intégré de TikTok, Facebook ou Instagram, qui ne permet pas l'installation. Pour que l'installation soit proposée : site en https (Vercel), `manifest.webmanifest` et `sw.js` accessibles. La tuile « Audio » est sur le tableau de bord (accueil).
+
+## Dons (facultatifs)
+Tuile « ♥ Soutenir NUR » permanente sur l'accueil et page dédiée. Un rappel discret apparaît à partir de la 3e visite, au plus tous les 10 jours, avec « Faire un don » et « Pas maintenant » : il ne bloque jamais l'utilisation. Le don n'est pas obligatoire et ne doit pas le devenir : la source audio d'Islamic Network n'autorise la redistribution que gratuite et non commerciale. Bouton « Partager NUR avec un proche » sur la page de don (partage natif du téléphone, sinon copie du lien).

@@ -232,20 +232,45 @@ async function initDon() {
 $("#donList").addEventListener("click", async e => { const v = e.target.dataset.copy; if (v == null) return;
   try { await navigator.clipboard.writeText(v); e.target.textContent = "Copié ✓"; } catch { e.target.textContent = "Copiez à la main"; } });
 
-/* ---------- Installation (nécessaire aux rappels sur iPhone) ---------- */
+/* rappel de don : discret, facultatif, jamais bloquant (dès la 3e visite, puis au plus tous les 10 jours) */
+const todayS = () => new Date().toLocaleDateString("sv-SE"), daysBetween = (a, b) => Math.round((new Date(b) - new Date(a)) / 864e5);
+let V = Object.assign({n:0, last:"", nudge:""}, store.get("visits", {}));
+if (V.last !== todayS()) { V.n++; V.last = todayS(); store.set("visits", V); }
+function nudgeUI() { $("#donNudge").hidden = !(V.n >= 3 && (!V.nudge || daysBetween(V.nudge, todayS()) >= 10)); }
+const nudgeDone = () => { V.nudge = todayS(); store.set("visits", V); nudgeUI(); };
+$("#nudgeNo").onclick = nudgeDone; $("#nudgeGo").onclick = () => { nudgeDone(); location.hash = "#don"; };
+$("#shareBtn").onclick = async () => {
+  const url = location.origin + "/", m = $("#shareMsg");
+  try { if (navigator.share) await navigator.share({title:"NUR", text:"NUR : horaires de prière, Coran, Qibla, invocations et Tasbih, gratuit.", url}); else { await navigator.clipboard.writeText(url); m.textContent = "Lien copié ✓"; } } catch {}
+};
+
+/* ---------- Installation : carte toujours visible sur l'accueil ---------- */
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 const standalone = () => matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
-let deferred = null;
+const UA = navigator.userAgent, isAndroid = /android/i.test(UA);
+const inApp = /FBAN|FBAV|FB_IAB|Instagram|TikTok|musical_ly|BytedanceWebview|Line\/|Snapchat|Twitter|LinkedInApp|MicroMessenger/i.test(UA);
+let deferred = null, instP = isIOS ? "ios" : isAndroid ? "android" : "pc";
+const STEPS = {
+  ios: `<ol><li>Ouvrez NUR dans <b>Safari</b>.</li><li>Touchez <b>Partager</b> (le carré avec une flèche vers le haut).</li><li>Faites défiler et touchez <b>« Sur l'écran d'accueil »</b>.</li><li>Touchez <b>Ajouter</b> : l'icône NUR apparaît parmi vos applications.</li></ol><p class="muted small">Les rappels de prière sur iPhone exigent cette installation (iOS 16.4 ou plus).</p>`,
+  android: `<ol><li><b>Chrome</b> : touchez le menu <b>⋮</b> en haut à droite, puis <b>« Installer l'application »</b> (ou « Ajouter à l'écran d'accueil »).</li><li><b>Samsung Internet</b> : menu <b>☰</b>, puis <b>« Ajouter la page à »</b>, puis <b>« Écran d'accueil »</b>.</li><li>Confirmez : l'icône NUR apparaît parmi vos applications.</li></ol>`,
+  pc: `<ol><li><b>Chrome ou Edge</b> : cliquez sur l'icône d'installation (écran avec une flèche) à droite de la barre d'adresse, ou menu <b>⋮</b> puis <b>« Installer NUR »</b>.</li><li><b>Safari (Mac)</b> : menu Fichier, puis <b>« Ajouter au Dock »</b>.</li><li><b>Firefox</b> ne permet pas l'installation : utilisez Chrome ou Edge.</li></ol>`};
 function installUI() {
-  const box = $("#install"); box.hidden = true;
-  if (standalone() || store.get("noInstall", false)) return;
-  if (isIOS) { box.hidden = false; $("#instBtn").hidden = true; $("#instTxt").textContent = "Pour installer NUR et recevoir les rappels : touchez Partager (le carré avec une flèche), puis « Sur l'écran d'accueil »."; }
-  else if (deferred) { box.hidden = false; $("#instBtn").hidden = false; $("#instTxt").textContent = "Installez NUR pour l'ouvrir comme une application et l'utiliser hors connexion."; }
+  $("#instTabs").innerHTML = [["ios", "iPhone / iPad"], ["android", "Android"], ["pc", "Ordinateur"]].map(([k, l]) => `<button type="button" class="${k === instP ? "on" : ""}" data-p="${k}">${l}</button>`).join("");
+  $("#instSteps").innerHTML = STEPS[instP];
+  $("#instDone").hidden = !standalone();
+  const w = $("#instWarn"), msgs = [];
+  if (inApp) msgs.push("Vous êtes dans le navigateur intégré d'une application (TikTok, Facebook, Instagram…) : il ne permet pas d'installer NUR. Touchez le menu <b>⋯</b> ou <b>⋮</b>, puis <b>« Ouvrir dans le navigateur »</b>, et revenez ici.");
+  if (typeof PREVIEW !== "undefined") msgs.push("Aperçu : l'installation n'est possible que depuis le site officiel de NUR (adresse https).");
+  w.hidden = !msgs.length; w.innerHTML = msgs.join("<br>");
+  $("#instBtn").hidden = !deferred;
 }
 addEventListener("beforeinstallprompt", e => { e.preventDefault(); deferred = e; installUI(); });
 addEventListener("appinstalled", () => { deferred = null; installUI(); });
+$("#instTabs").onclick = e => { const p = e.target.dataset.p; if (p) { instP = p; installUI(); } };
 $("#instBtn").onclick = async () => { if (!deferred) return; deferred.prompt(); await deferred.userChoice.catch(() => {}); deferred = null; installUI(); };
-$("#instNo").onclick = () => { store.set("noInstall", true); installUI(); };
+function goInstall(e) { if (e) e.preventDefault(); if (location.hash !== "#home") location.hash = "#home";
+  setTimeout(() => { const c = $("#install"); c.scrollIntoView({behavior:calm ? "auto" : "smooth", block:"start"}); c.classList.remove("flash"); void c.offsetWidth; c.classList.add("flash"); }, 80); }
+$("#instTop").onclick = goInstall; $("#instMore").onclick = goInstall;
 
 /* ---------- Qibla ---------- */
 const KAABA = [21.4225, 39.8262];
@@ -424,5 +449,5 @@ function initSettings() {
 
 /* ---------- Démarrage ---------- */
 applyTheme(); initSettings(); compute(); tick(); drawT(); route();
-initDon(); installUI(); Promise.all([initQuran(), initAudio()]).then(renderAudio); initDhikr();
+initDon(); nudgeUI(); installUI(); Promise.all([initQuran(), initAudio()]).then(renderAudio); initDhikr();
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js", {scope:"/"}).catch(() => {});

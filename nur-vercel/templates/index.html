@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>NUR</title>
 <meta name="theme-color" content="#6c5ce7">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="NUR"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Amiri+Quran&display=swap">
 <link rel="manifest" href="/static/manifest.webmanifest">
@@ -14,19 +16,28 @@
 </head>
 <body>
 <main>
+<header class="brand"><img src="/static/logo.png" alt="" width="40" height="40"><b>NUR</b><button id="instTop" class="pillbtn" type="button">⬇ Installer</button></header>
 <section id="home">
- <div class="brand"><img src="/static/logo.png" alt="" width="40" height="40"><b>NUR</b><span class="muted small">Prière · Coran · Qibla</span></div>
- <div id="install" class="card" hidden><p id="instTxt"></p><button id="instBtn" hidden>Installer NUR</button> <button id="instNo" class="ghost">Plus tard</button></div>
+
+
  <div class="hero" id="hero" data-p="fajr">
   <span class="pill" id="where"></span> <span class="pill" id="hijri"></span>
   <p class="lbl" id="nextLabel">Prochaine prière</p>
   <h1 id="nextName">--</h1><p id="nextTime" class="big">--:--</p><span id="countdown" class="pill"></span>
  </div>
  <div class="strip" id="strip"></div>
+ <div class="card" id="install"><h3 style="margin-top:0">⬇ Installer NUR sur votre appareil</h3>
+  <p class="warn" id="instWarn" hidden></p><p id="instDone" hidden>NUR est déjà installée sur cet appareil ✓</p>
+  <div class="tabs" id="instTabs"></div><div id="instSteps"></div>
+  <p style="margin:.6rem 0 0"><button id="instBtn" hidden type="button">Installer maintenant</button></p></div>
+ <div class="card nudge" id="donNudge" hidden><p style="margin:0 0 .6rem"><b>♥ NUR est gratuite, et le restera.</b><br>Si elle vous est utile, un don, même petit, aide à la faire évoluer et à soutenir des personnes dans le besoin. C'est entièrement facultatif.</p>
+  <button id="nudgeGo" type="button">Faire un don</button> <button class="ghost" id="nudgeNo" type="button">Pas maintenant</button></div>
  <div class="tiles">
   <a class="t t1" href="#prayers"><i>🕌</i>Prières</a><a class="t t2" href="#quran"><i>📖</i>Coran</a>
+  <a class="t t7 wide" href="#audio"><i>🎧</i><span>Audio<br><small>Écouter les 114 sourates</small></span></a>
   <a class="t t3" href="#qibla"><i>🧭</i>Qibla</a><a class="t t4" href="#tasbih"><i>📿</i>Tasbih</a>
   <a class="t t5" href="#dhikr"><i>🤲</i>Invocations</a><a class="t t6" href="#ramadan"><i>🌙</i>Ramadan</a>
+  <a class="t t9 wide" href="#don"><i>♥</i><span>Soutenir NUR<br><small>Facultatif · faire évoluer l'application et aider les plus démunis</small></span></a>
  </div>
 </section>
 <section id="prayers"><h2>Horaires de prière</h2><p class="muted" id="pMeta"></p><ul id="pList" class="rows"></ul>
@@ -87,12 +98,15 @@
  <li><b>D'aider des personnes dans le besoin</b> : une partie des dons leur sera consacrée.</li></ul>
  <p>Chaque don, même petit, compte. Aucun don n'est obligatoire : NUR restera utilisable par tous.</p>
  <h3>Comment donner</h3><ul id="donList" class="rows"></ul><p class="muted small" id="donNote"></p>
+ <p class="muted small">Mobile money : ouvrez votre application ou le menu de votre opérateur, choisissez « Transfert », saisissez le numéro ci-dessus puis le montant de votre choix.</p>
+ <p><button class="ghost" id="shareBtn" type="button">Partager NUR avec un proche</button> <span class="muted small" id="shareMsg"></span></p>
  <p class="muted small" id="donTr"></p>
  <p>Que Dieu vous récompense et vous facilite le bien.</p></section>
 <section id="more"><h2>Plus</h2><div class="tiles">
  <a class="t t7" href="#audio"><i>🎧</i>Audio</a><a class="t t3" href="#qibla"><i>🧭</i>Qibla</a>
  <a class="t t5" href="#dhikr"><i>🤲</i>Invocations</a><a class="t t4" href="#tasbih"><i>📿</i>Tasbih</a>
  <a class="t t6" href="#ramadan"><i>🌙</i>Ramadan</a><a class="t t8" href="#settings"><i>⚙️</i>Paramètres</a></div>
+ <a class="card" id="instMore" href="#more" style="display:block;color:inherit;text-decoration:none">⬇ <b>Installer l'application</b><br><span class="muted small">Sur l'écran d'accueil, comme une vraie application</span></a>
  <a class="card" href="#don" style="display:block;color:inherit;text-decoration:none">♥ <b>Soutenir NUR</b><br><span class="muted small">Faire évoluer l'application et aider les plus démunis</span></a></section>
 </main>
 <nav>
@@ -101,6 +115,7 @@
  <a href="#quran"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/></svg><span>Coran</span></a>
  <a href="#more"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></svg><span>Plus</span></a>
 </nav>
+
 <script src="/static/vendor/gsap.min.js" onerror="var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';s.crossOrigin='anonymous';document.head.appendChild(s)"></script>
 <script src="/static/app.js"></script>
 </body>

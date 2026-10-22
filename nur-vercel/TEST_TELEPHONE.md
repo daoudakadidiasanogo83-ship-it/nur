@@ -15,6 +15,8 @@ Ouvre l'adresse de ton site Vercel (ou le lien d'aperçu) dans Chrome (Android) 
 - [ ] Plus > Soutenir NUR : le texte s'affiche bien.
 
 ## 2. Installée sur l'écran d'accueil
+- [ ] Le bouton « ⬇ Installer » est visible en haut de toutes les pages, et la carte d'installation sur l'accueil.
+- [ ] Ouvre le lien depuis TikTok ou Facebook : un message te dit d'ouvrir dans le navigateur.
 - [ ] iPhone : Partager > Sur l'écran d'accueil. Android : bouton « Installer NUR ».
 - [ ] Ouvre depuis l'icône : plein écran, logo croissant et lumière.
 - [ ] Mode avion : accueil, horaires, Tasbih et sourates déjà ouvertes fonctionnent encore.
