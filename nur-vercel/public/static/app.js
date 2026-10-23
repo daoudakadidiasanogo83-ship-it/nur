@@ -294,16 +294,16 @@ function renderNoms(f = "") { const q = f.trim().toLowerCase();
 async function initNoms() { try { NOMS = await loadJSON("noms"); } catch {} renderNoms(); }
 $("#nSearch").addEventListener("input", e => renderNoms(e.target.value));
 
-/* ---------- Suggestions ---------- */
-$("#ideaSend").onclick = async () => {
+/* ---------- Suggestions : envoyées vers le WhatsApp de l'équipe ---------- */
+let CONTACT = {}; loadJSON("contact").then(c => CONTACT = c).catch(() => {});
+$("#ideaSend").onclick = () => {
   const t = $("#ideaTxt").value.trim(), m = $("#ideaMsg");
   if (t.length < 5) { m.textContent = "Écrivez au moins quelques mots."; return; }
-  if (Date.now() - store.get("ideaT", 0) < 60000) { m.textContent = "Merci ! Patientez une minute avant d'en envoyer une autre."; return; }
-  $("#ideaSend").disabled = true;
-  try { const r = await fetch("/api/suggest", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({t, c:$("#ideaC").value, website:$("#ideaHp").value})});
-    if (r.status === 429) throw "rl"; if (!r.ok) throw 0; store.set("ideaT", Date.now()); $("#ideaTxt").value = ""; m.textContent = "Merci ! Votre suggestion a bien été envoyée 🤲"; }
-  catch (e) { m.textContent = e === "rl" ? "Trop de messages d'un coup : réessayez dans une minute." : "Envoi impossible pour le moment. Réessayez plus tard."; }
-  $("#ideaSend").disabled = false;
+  if (!CONTACT.whatsapp) { m.textContent = "Envoi indisponible pour le moment. Réessayez dans un instant."; return; }
+  const text = `NUR · ${$("#ideaC").value}\n\n${t}\n\n(envoyé depuis l'application NUR)`;
+  const a = document.createElement("a"); a.href = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(text)}`; a.target = "_blank"; a.rel = "noopener";
+  document.body.appendChild(a); a.click(); a.remove();
+  m.textContent = "WhatsApp s'ouvre : touchez « Envoyer » pour transmettre votre message. Merci 🤲";
 };
 
 /* ---------- Dons ---------- */

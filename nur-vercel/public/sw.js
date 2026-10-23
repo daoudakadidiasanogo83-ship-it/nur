@@ -1,4 +1,4 @@
-const V = "nur-v16", SHELL = ["/", "/static/style.css", "/static/app.js", "/static/manifest.webmanifest", "/static/logo.png", "/static/icon-192.png", "/data/quran.json", "/data/invocations.json", "/data/audio.json", "/data/don.json", "/data/noms.json"];
+const V = "nur-v17", SHELL = ["/", "/static/style.css", "/static/app.js", "/static/manifest.webmanifest", "/static/logo.png", "/static/icon-192.png", "/data/quran.json", "/data/invocations.json", "/data/audio.json", "/data/don.json", "/data/noms.json", "/data/contact.json"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(V).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(k => Promise.all(k.filter(x => x !== V).map(x => caches.delete(x)))).then(() => self.clients.claim())); });
 self.addEventListener("fetch", e => {

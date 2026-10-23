@@ -33,5 +33,5 @@ Note ce qui ne va pas (téléphone, navigateur, ce qui s'affiche) et envoie-le m
 
 ## 4. Nouveautés
 - [ ] Accueil > « 99 Noms d'Allah » : recherche « rahman », « pardon ».
-- [ ] Plus > « Une idée pour NUR » : envoie un message test, puis lis-le avec /api/suggestions?token=...
+- [ ] Plus > « Une idée pour NUR » : écris un message, touche « Envoyer par WhatsApp » : WhatsApp s'ouvre avec le message prêt, adressé au bon numéro.
 - [ ] Dons : le numéro n'est pas affiché ; « Donner » ouvre le téléphone ; « Copier » copie le numéro.

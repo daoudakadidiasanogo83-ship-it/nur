@@ -74,8 +74,8 @@ Tuile « ♥ Soutenir NUR » permanente sur l'accueil et page dédiée. Un rappe
 ## 99 Noms d'Allah
 Page « 99 Noms d'Allah » (recherche par nom, sens ou numéro) : `public/data/noms.json`. Liste la plus répandue, qui varie légèrement selon les sources. **À faire relire par une personne qualifiée.**
 
-## Suggestions des utilisateurs
-Page « Une idée pour NUR ? » : les messages (600 caractères, anonymes, 1 par minute et par appareil) sont stockés dans Upstash. Lecture par le propriétaire : `https://TON-SITE/api/suggestions?token=ADMIN_TOKEN` (ajouter la variable `ADMIN_TOKEN` dans Vercel). Sans Upstash, l'envoi échoue proprement.
+## Suggestions des utilisateurs → WhatsApp
+Page « Une idée pour NUR ? » : le bouton ouvre WhatsApp avec le message déjà écrit et adressé à l'équipe (lien `wa.me`) ; l'utilisateur touche « Envoyer ». Le numéro est dans `public/data/contact.json` (format international sans « + », ex. `22395080677`). Aucun message n'est stocké sur le site ni dans Upstash, rien à configurer, aucun quota consommé. Contrepartie : le message part du WhatsApp de l'utilisateur, donc son numéro est visible par l'équipe (il n'est pas anonyme). Un envoi automatique vers un WhatsApp sans action de l'utilisateur exigerait l'API WhatsApp Business (compte vérifié, payante).
 
 ## Numéro de don
 Le numéro n'est plus affiché : bouton « Donner » (ouvre le numéro dans le téléphone, `tel:`) et bouton « Copier ». Il reste présent dans `public/data/don.json` : il est masqué à l'écran, pas secret. Pour un vrai masquage, utiliser un lien de paiement (`url`) fourni par un service de paiement.
