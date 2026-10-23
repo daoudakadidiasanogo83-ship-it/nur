@@ -37,17 +37,14 @@
   <a class="t t7 wide" href="#audio"><i>🎧</i><span>Audio<br><small>Écouter les 114 sourates</small></span></a>
   <a class="t t3" href="#qibla"><i>🧭</i>Qibla</a><a class="t t4" href="#tasbih"><i>📿</i>Tasbih</a>
   <a class="t t5" href="#dhikr"><i>🤲</i>Invocations</a><a class="t t6" href="#ramadan"><i>🌙</i>Ramadan</a>
+  <a class="t t10" href="#names"><i>✨</i>99 Noms d'Allah</a><a class="t t8" href="#settings"><i>⚙️</i>Paramètres</a>
   <a class="t t9 wide" href="#don"><i>♥</i><span>Soutenir NUR<br><small>Facultatif · faire évoluer l'application et aider les plus démunis</small></span></a>
  </div>
 </section>
 <section id="prayers"><h2>Horaires de prière</h2><p class="muted" id="pMeta"></p><ul id="pList" class="rows"></ul>
  <p class="muted small">Les horaires sont calculés sur l'appareil à partir de votre ville et de la méthode choisie dans les paramètres. Ils peuvent différer de quelques minutes de ceux de votre mosquée.</p></section>
 <section id="quran"><h2>Coran</h2><input id="qSearch" type="search" placeholder="Chercher une sourate"><ul id="qList" class="rows"></ul><div id="qRead" hidden></div></section>
-<section id="audio"><h2>Récitations</h2><div id="aList"></div><div id="aPlayer" class="card" hidden><p id="aNow"></p>
-  <input id="aSeek" type="range" min="0" max="1000" value="0" aria-label="Position"><p class="muted small" id="aTime">0:00 / 0:00</p>
-  <div class="ctl"><button id="aPrev" aria-label="Précédent">⏮</button><button id="aPlay" aria-label="Lecture">▶</button><button id="aNext" aria-label="Suivant">⏭</button><button id="aSave" class="ghost" aria-label="Enregistrer le fichier sur le téléphone">⬇</button></div>
-  <label class="row"><input type="checkbox" id="aAuto" checked> Enchaîner les sourates automatiquement</label>
-  <p class="muted small" id="aMsg2"></p><audio id="aEl" preload="none"></audio></div></section>
+<section id="audio"><h2>Récitations</h2><div id="aList"></div></section>
 <section id="qibla"><h2>Qibla</h2>
  <div class="qwrap"><svg viewBox="0 0 300 300" role="img" aria-label="Boussole de la Qibla">
   <defs><linearGradient id="qg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6c5ce7"/><stop offset="1" stop-color="#ff6b9d"/></linearGradient></defs>
@@ -88,6 +85,11 @@
  <h3>Ajuster les horaires (minutes)</h3>
  <p class="muted small">Si votre mosquée prie plus tôt ou plus tard que l'heure calculée, décalez ici. Exemple : +20 sur Dhuhr.</p>
  <div class="adj"><label>Fajr<input type="number" id="adj_fajr" min="-120" max="120" step="1" inputmode="numeric"></label><label>Dhuhr<input type="number" id="adj_dhuhr" min="-120" max="120" step="1" inputmode="numeric"></label><label>Asr<input type="number" id="adj_asr" min="-120" max="120" step="1" inputmode="numeric"></label><label>Maghrib<input type="number" id="adj_maghrib" min="-120" max="120" step="1" inputmode="numeric"></label><label>Isha<input type="number" id="adj_isha" min="-120" max="120" step="1" inputmode="numeric"></label></div>
+ <h3>Audio hors connexion</h3>
+ <label class="row"><input type="checkbox" id="sCache"> Enregistrer automatiquement les sourates écoutées <span class="muted small">(désactivé par défaut : utilise de l'espace et des données mobiles)</span></label>
+ <label>Espace maximum<select id="sCap"><option value="100">100 Mo</option><option value="300">300 Mo</option><option value="1000">1 Go</option></select></label>
+ <p class="muted small"><span id="sCacheInfo">0 Mo utilisés</span> · les plus anciennes sourates sont supprimées quand la limite est atteinte.</p>
+ <p><button class="ghost" id="sCacheClear" type="button">Vider l'espace audio</button></p>
  <label class="row"><input type="checkbox" id="sNotif"> Rappel à l'heure de chaque prière</label><p class="muted small" id="nHint"></p>
  <p class="muted small">Aucun compte requis. Vos réglages, favoris et compteurs restent sur cet appareil.</p>
  <p class="muted small">NUR · version 3 · design coloré</p></section>
@@ -102,10 +104,21 @@
  <p><button class="ghost" id="shareBtn" type="button">Partager NUR avec un proche</button> <span class="muted small" id="shareMsg"></span></p>
  <p class="muted small" id="donTr"></p>
  <p>Que Dieu vous récompense et vous facilite le bien.</p></section>
+<section id="names"><h2>Les 99 Noms d'Allah</h2>
+ <p class="muted small">Liste la plus répandue ; elle varie légèrement selon les sources. Les sens donnés sont des explications courtes, pas des traductions exhaustives.</p>
+ <input id="nSearch" type="search" placeholder="Chercher un nom ou un sens (ex. Rahman, Pardon)"><ul id="nList" class="rows"></ul></section>
+<section id="idea"><h2>Une idée pour NUR ?</h2>
+ <p>Une fonction à ajouter, un problème rencontré, un récitateur ou un contenu à proposer ? Écrivez-nous : chaque suggestion est lue.</p>
+ <label>Catégorie<select id="ideaC"><option>Idée de fonction</option><option>Problème rencontré</option><option>Contenu (Coran, audio, invocations)</option><option>Autre</option></select></label>
+ <label>Votre message<textarea id="ideaTxt" rows="5" maxlength="600" placeholder="Votre suggestion…"></textarea></label>
+ <input id="ideaHp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+ <button id="ideaSend" type="button">Envoyer</button><p class="muted small" id="ideaMsg"></p>
+ <p class="muted small">Votre message est anonyme : n'y mettez pas d'informations personnelles.</p></section>
 <section id="more"><h2>Plus</h2><div class="tiles">
  <a class="t t7" href="#audio"><i>🎧</i>Audio</a><a class="t t3" href="#qibla"><i>🧭</i>Qibla</a>
  <a class="t t5" href="#dhikr"><i>🤲</i>Invocations</a><a class="t t4" href="#tasbih"><i>📿</i>Tasbih</a>
- <a class="t t6" href="#ramadan"><i>🌙</i>Ramadan</a><a class="t t8" href="#settings"><i>⚙️</i>Paramètres</a></div>
+ <a class="t t6" href="#ramadan"><i>🌙</i>Ramadan</a><a class="t t8" href="#settings"><i>⚙️</i>Paramètres</a>
+ <a class="t t10" href="#names"><i>✨</i>99 Noms d'Allah</a><a class="t t11" href="#idea"><i>💡</i>Une idée pour NUR</a></div>
  <a class="card" id="instMore" href="#more" style="display:block;color:inherit;text-decoration:none">⬇ <b>Installer l'application</b><br><span class="muted small">Sur l'écran d'accueil, comme une vraie application</span></a>
  <a class="card" href="#don" style="display:block;color:inherit;text-decoration:none">♥ <b>Soutenir NUR</b><br><span class="muted small">Faire évoluer l'application et aider les plus démunis</span></a></section>
 </main>
@@ -115,6 +128,13 @@
  <a href="#quran"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5"/></svg><span>Coran</span></a>
  <a href="#more"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></svg><span>Plus</span></a>
 </nav>
+<div id="player" hidden>
+ <div class="ptop"><b id="pTitle"></b><button class="star" id="pClose" type="button" aria-label="Fermer le lecteur">✕</button></div>
+ <div class="pbar"><input type="range" id="pSeek" min="0" max="1000" value="0" aria-label="Position"><span id="pTime">0:00 / 0:00</span></div>
+ <div class="pctl"><button class="pb" id="pPrev" type="button" aria-label="Sourate précédente">⏮</button><button class="pb" id="pBack" type="button" aria-label="Reculer de 10 secondes">⏪</button><button class="pb big" id="pPlay" type="button" aria-label="Lecture ou pause">▶</button><button class="pb" id="pFwd" type="button" aria-label="Avancer de 10 secondes">⏩</button><button class="pb" id="pNext" type="button" aria-label="Sourate suivante">⏭</button></div>
+ <div class="popt"><button class="chip2" id="pRep" type="button">🔁 Répéter : non</button><button class="chip2" id="pSpd" type="button">1×</button><button class="chip2" id="pSleep" type="button">⏲ Minuteur</button><button class="chip2" id="pSave" type="button">⬇ Enregistrer</button></div>
+ <p class="muted small" id="pMsg" style="margin:.4rem 0 0;text-align:center"></p></div>
+<audio id="aEl" preload="auto"></audio>
 
 <script src="/static/vendor/gsap.min.js" onerror="var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';s.crossOrigin='anonymous';document.head.appendChild(s)"></script>
 <script src="/static/app.js"></script>

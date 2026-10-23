@@ -63,3 +63,19 @@ Bouton « ⬇ Installer » en haut de chaque page, et carte « Installer NUR sur
 
 ## Dons (facultatifs)
 Tuile « ♥ Soutenir NUR » permanente sur l'accueil et page dédiée. Un rappel discret apparaît à partir de la 3e visite, au plus tous les 10 jours, avec « Faire un don » et « Pas maintenant » : il ne bloque jamais l'utilisation. Le don n'est pas obligatoire et ne doit pas le devenir : la source audio d'Islamic Network n'autorise la redistribution que gratuite et non commerciale. Bouton « Partager NUR avec un proche » sur la page de don (partage natif du téléphone, sinon copie du lien).
+
+## Audio : directement depuis le CDN (aucun stockage, aucun relais)
+- **Rien n'est stocké sur ton site et rien ne passe par ton compte Vercel :** le téléphone lit et télécharge les sourates directement depuis le CDN d'Al Quran Cloud / Islamic Network (`https://cdn.islamic.network/...`). Ton quota Vercel n'est donc pas consommé par l'audio.
+- **Lecteur** (visible sur toutes les pages) : lecture/pause, précédent/suivant, ±10 s, barre de progression, répétition (non / cette sourate / tout), vitesse (0,75× à 1,5×), minuteur d'arrêt, bouton Enregistrer. Commandes de l'écran verrouillé, des notifications et des écouteurs Bluetooth.
+- **Téléchargement ⬇ :** le téléphone récupère le fichier depuis le CDN. Si le navigateur le bloque (le CDN doit autoriser la copie par une page web), un lien « Ouvrir le fichier » apparaît (menu ⋮ ou Partager > Enregistrer).
+- **Enregistrement automatique (désactivé par défaut) :** à activer dans Paramètres, par chaque utilisateur. Une sourate écoutée est alors copiée dans SON téléphone (jamais sur ton site), limitée à 100 Mo, 300 Mo ou 1 Go. Il utilise des données mobiles en plus de l'écoute.
+- **Où vont les fichiers ?** Une application web ne peut pas écrire dans le dossier Musique : les téléchargements vont dans Téléchargements / Fichiers, d'où VLC ou un lecteur de musique peuvent les ouvrir.
+
+## 99 Noms d'Allah
+Page « 99 Noms d'Allah » (recherche par nom, sens ou numéro) : `public/data/noms.json`. Liste la plus répandue, qui varie légèrement selon les sources. **À faire relire par une personne qualifiée.**
+
+## Suggestions des utilisateurs
+Page « Une idée pour NUR ? » : les messages (600 caractères, anonymes, 1 par minute et par appareil) sont stockés dans Upstash. Lecture par le propriétaire : `https://TON-SITE/api/suggestions?token=ADMIN_TOKEN` (ajouter la variable `ADMIN_TOKEN` dans Vercel). Sans Upstash, l'envoi échoue proprement.
+
+## Numéro de don
+Le numéro n'est plus affiché : bouton « Donner » (ouvre le numéro dans le téléphone, `tel:`) et bouton « Copier ». Il reste présent dans `public/data/don.json` : il est masqué à l'écran, pas secret. Pour un vrai masquage, utiliser un lien de paiement (`url`) fourni par un service de paiement.

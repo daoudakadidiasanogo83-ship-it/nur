@@ -8,6 +8,9 @@ Ouvre l'adresse de ton site Vercel (ou le lien d'aperçu) dans Chrome (Android) 
 - [ ] Qibla : touche « Activer la boussole », accepte. Tourne-toi : le cadran tourne et passe au vert face à la Qibla. Compare avec une autre boussole.
 - [ ] Coran : ouvre une sourate. Tasbih : compte, change l'objectif. Invocations : mets une étoile, masque/affiche Phonétique et Traduction, touche 🔊 (voix arabe installée ?).
 - [ ] Audio (sur le site déployé, pas dans l'aperçu) : touche ▶ sur une sourate : le son démarre ? Re-touche : pause ? À la fin, la suivante démarre seule ?
+- [ ] Lecteur : pause, répétition, vitesse, minuteur ; il reste visible quand tu changes de page.
+- [ ] Paramètres > active « Enregistrer automatiquement », écoute une sourate : après quelques secondes elle est marquée « ✓ hors connexion » ; coupe le réseau et relance-la.
+- [ ] ⬇ : le fichier arrive dans Téléchargements (Android) ou Fichiers (iPhone). Sinon, le lien « Ouvrir le fichier » apparaît : dis-moi ce que tu vois.
 - [ ] Verrouille l'écran pendant la lecture : les commandes lecture/pause apparaissent-elles ?
 - [ ] ⬇ sur une sourate : le fichier est-il enregistré sur le téléphone (Téléchargements / Fichiers) ?
 - [ ] Coran : ouvre une sourate autre que Al-Fâtiha (connexion nécessaire la 1re fois).
@@ -27,3 +30,8 @@ Ouvre l'adresse de ton site Vercel (ou le lien d'aperçu) dans Chrome (Android) 
 - [ ] Désactive les rappels : plus de notification.
 
 Note ce qui ne va pas (téléphone, navigateur, ce qui s'affiche) et envoie-le moi.
+
+## 4. Nouveautés
+- [ ] Accueil > « 99 Noms d'Allah » : recherche « rahman », « pardon ».
+- [ ] Plus > « Une idée pour NUR » : envoie un message test, puis lis-le avec /api/suggestions?token=...
+- [ ] Dons : le numéro n'est pas affiché ; « Donner » ouvre le téléphone ; « Copier » copie le numéro.

@@ -1,5 +1,5 @@
 """NUR sur Vercel : le contenu est statique (public/), Flask ne gère que les rappels push."""
-import hmac, os, re
+import hashlib, hmac, json, os, re
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import available_timezones
@@ -66,6 +66,43 @@ def push_task():
     if not exp or not hmac.compare_digest(exp, given):
         abort(404)
     return {"sent": push.send_due(datetime.now(timezone.utc))}
+
+
+@app.post("/api/suggest")
+def suggest():
+    """Suggestions des utilisateurs, stockées dans Upstash (liste de 500 messages maximum)."""
+    j = request.get_json(silent=True) or {}
+    t = str(j.get("t", "")).strip()
+    if j.get("website"):          # champ piège pour les robots
+        return {"ok": True}
+    if not 5 <= len(t) <= 600:
+        abort(400)
+    ip = (request.headers.get("x-forwarded-for", "").split(",")[0].strip() or request.remote_addr or "?")
+    ip = hashlib.sha256(ip.encode()).hexdigest()[:16]
+    try:
+        first = push.kv("SET", "nur:rl:" + ip, "1", "EX", "60", "NX")
+        if first:
+            push.kv("LPUSH", "nur:suggestions", json.dumps({"t": t, "c": str(j.get("c", ""))[:60], "at": datetime.now(timezone.utc).isoformat(timespec="seconds")}, ensure_ascii=False))
+            push.kv("LTRIM", "nur:suggestions", 0, 499)
+    except Exception:
+        abort(503)
+    if not first:
+        abort(429)
+    return {"ok": True}
+
+
+@app.get("/api/suggestions")
+def suggestions():
+    """Lecture par le propriétaire : /api/suggestions?token=ADMIN_TOKEN (ou en-tête Authorization: Bearer)."""
+    exp = os.environ.get("ADMIN_TOKEN", "")
+    given = request.headers.get("Authorization", "").removeprefix("Bearer ").strip() or request.args.get("token", "")
+    if not exp or not hmac.compare_digest(exp, given):
+        abort(404)
+    try:
+        rows = push.kv("LRANGE", "nur:suggestions", 0, 199) or []
+    except Exception:
+        abort(503)
+    return {"suggestions": [json.loads(x) for x in rows]}
 
 
 if __name__ == "__main__":

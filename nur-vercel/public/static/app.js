@@ -51,8 +51,8 @@ function nextPrayer(now, p) {
 }
 
 /* ---------- Navigation ---------- */
-const PAGES = ["home","prayers","quran","audio","qibla","dhikr","tasbih","ramadan","settings","don","more"];
-const NAVMAP = {audio:"more",qibla:"more",dhikr:"more",tasbih:"more",ramadan:"more",settings:"more",don:"more"};
+const PAGES = ["home","prayers","quran","audio","qibla","dhikr","tasbih","ramadan","settings","don","names","idea","more"];
+const NAVMAP = {audio:"more",qibla:"more",dhikr:"more",tasbih:"more",ramadan:"more",settings:"more",don:"more",names:"more",idea:"more"};
 function route() {
   let id = location.hash.slice(1); if (!PAGES.includes(id)) id = "home";
   PAGES.forEach(p => $("#" + p).classList.toggle("on", p === id));
@@ -95,11 +95,12 @@ document.addEventListener("visibilitychange", () => { if (!document.hidden) { co
 /* ---------- Coran ---------- */
 const SURAHS = [["الفاتحة", "Al-Fâtiha"], ["البقرة", "Al-Baqara"], ["آل عمران", "Âl ʿImrân"], ["النساء", "An-Nisâ’"], ["المائدة", "Al-Mâ’ida"], ["الأنعام", "Al-An’âm"], ["الأعراف", "Al-A’râf"], ["الأنفال", "Al-Anfâl"], ["التوبة", "At-Tawba"], ["يونس", "Yûnus"], ["هود", "Hûd"], ["يوسف", "Yûsuf"], ["الرعد", "Ar-Ra’d"], ["إبراهيم", "Ibrâhîm"], ["الحجر", "Al-Hijr"], ["النحل", "An-Nahl"], ["الإسراء", "Al-Isrâ’"], ["الكهف", "Al-Kahf"], ["مريم", "Maryam"], ["طه", "Tâ-Hâ"], ["الأنبياء", "Al-Anbiyâ’"], ["الحج", "Al-Hajj"], ["المؤمنون", "Al-Mu’minûn"], ["النور", "An-Nûr"], ["الفرقان", "Al-Furqân"], ["الشعراء", "Ash-Shu’arâ’"], ["النمل", "An-Naml"], ["القصص", "Al-Qasas"], ["العنكبوت", "Al-’Ankabût"], ["الروم", "Ar-Rûm"], ["لقمان", "Luqmân"], ["السجدة", "As-Sajda"], ["الأحزاب", "Al-Ahzâb"], ["سبأ", "Saba’"], ["فاطر", "Fâtir"], ["يس", "Yâ-Sîn"], ["الصافات", "As-Sâffât"], ["ص", "Sâd"], ["الزمر", "Az-Zumar"], ["غافر", "Ghâfir"], ["فصلت", "Fussilat"], ["الشورى", "Ash-Shûrâ"], ["الزخرف", "Az-Zukhruf"], ["الدخان", "Ad-Dukhân"], ["الجاثية", "Al-Jâthiya"], ["الأحقاف", "Al-Ahqâf"], ["محمد", "Muhammad"], ["الفتح", "Al-Fath"], ["الحجرات", "Al-Hujurât"], ["ق", "Qâf"], ["الذاريات", "Adh-Dhâriyât"], ["الطور", "At-Tûr"], ["النجم", "An-Najm"], ["القمر", "Al-Qamar"], ["الرحمن", "Ar-Rahmân"], ["الواقعة", "Al-Wâqi’a"], ["الحديد", "Al-Hadîd"], ["المجادلة", "Al-Mujâdala"], ["الحشر", "Al-Hashr"], ["الممتحنة", "Al-Mumtahana"], ["الصف", "As-Saff"], ["الجمعة", "Al-Jumu’a"], ["المنافقون", "Al-Munâfiqûn"], ["التغابن", "At-Taghâbun"], ["الطلاق", "At-Talâq"], ["التحريم", "At-Tahrîm"], ["الملك", "Al-Mulk"], ["القلم", "Al-Qalam"], ["الحاقة", "Al-Hâqqa"], ["المعارج", "Al-Ma’ârij"], ["نوح", "Nûh"], ["الجن", "Al-Jinn"], ["المزمل", "Al-Muzzammil"], ["المدثر", "Al-Muddaththir"], ["القيامة", "Al-Qiyâma"], ["الإنسان", "Al-Insân"], ["المرسلات", "Al-Mursalât"], ["النبأ", "An-Naba’"], ["النازعات", "An-Nâzi’ât"], ["عبس", "’Abasa"], ["التكوير", "At-Takwîr"], ["الانفطار", "Al-Infitâr"], ["المطففين", "Al-Mutaffifîn"], ["الانشقاق", "Al-Inshiqâq"], ["البروج", "Al-Burûj"], ["الطارق", "At-Târiq"], ["الأعلى", "Al-A’lâ"], ["الغاشية", "Al-Ghâshiya"], ["الفجر", "Al-Fajr"], ["البلد", "Al-Balad"], ["الشمس", "Ash-Shams"], ["الليل", "Al-Layl"], ["الضحى", "Ad-Duhâ"], ["الشرح", "Ash-Sharh"], ["التين", "At-Tîn"], ["العلق", "Al-’Alaq"], ["القدر", "Al-Qadr"], ["البينة", "Al-Bayyina"], ["الزلزلة", "Az-Zalzala"], ["العاديات", "Al-’Âdiyât"], ["القارعة", "Al-Qâri’a"], ["التكاثر", "At-Takâthur"], ["العصر", "Al-’Asr"], ["الهمزة", "Al-Humaza"], ["الفيل", "Al-Fîl"], ["قريش", "Quraysh"], ["الماعون", "Al-Mâ’ûn"], ["الكوثر", "Al-Kawthar"], ["الكافرون", "Al-Kâfirûn"], ["النصر", "An-Nasr"], ["المسد", "Al-Masad"], ["الإخلاص", "Al-Ikhlâs"], ["الفلق", "Al-Falaq"], ["الناس", "An-Nâs"]];
 const nm = n => SURAHS[n - 1] ? SURAHS[n - 1][1] : "Sourate " + n;
+const norm = s => String(s).normalize("NFD").replace(/[\u0300-\u036f\u064B-\u065F\u0670]/g, "").replace(/[ʿ’'\-\s]/g, "").toLowerCase();
 let QURAN = null;
 async function loadJSON(n) { const r = await fetch("/data/" + n + ".json"); if (!r.ok) throw 0; return r.json(); }
 function qList(filter = "") {
   const f = filter.trim().toLowerCase();
-  $("#qList").innerHTML = SURAHS.map(([ar, fr], i) => ({n:i + 1, ar, fr})).filter(s => !f || String(s.n) === f || s.fr.toLowerCase().includes(f) || s.ar.includes(f))
+  $("#qList").innerHTML = SURAHS.map(([ar, fr], i) => ({n:i + 1, ar, fr})).filter(s => !f || String(s.n) === f || norm(s.fr).includes(norm(f)) || norm(s.ar).includes(norm(f)))
     .map(s => `<li class="tap" data-n="${s.n}"><span>${s.n}. ${s.fr}</span><span class="ar" style="font-size:1.3rem;line-height:1.5">${s.ar}</span></li>`).join("");
 }
 async function initQuran() { try { QURAN = await loadJSON("quran"); } catch { QURAN = []; } qList(); }
@@ -129,103 +130,190 @@ $("#qList").addEventListener("click", async e => {
 });
 
 /* ---------- Audio ---------- */
-let AUD = [], aCur = null, aRec = 0, aURL = null, HAVE = new Set(), unlocked = false;
+let AUD = [], aCur = null, aRec = 0, aURL = null, HAVE = new Set(), unlocked = false, cacheCtl = null, sleepT = null, seeking = false;
+const AP = Object.assign({rep:"off", spd:1, auto:true, cache:false, cap:300}, store.get("ap", {}));   // enregistrement automatique : désactivé par défaut
+const saveAP = () => store.set("ap", AP);
 const SILENT = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";
 const IDB = () => new Promise((ok, ko) => { const r = indexedDB.open("nur", 1); r.onupgradeneeded = () => r.result.createObjectStore("audio"); r.onsuccess = () => ok(r.result); r.onerror = () => ko(r.error); });
 const idb = async (mode, fn) => { const d = await IDB(); return new Promise((ok, ko) => { const t = d.transaction("audio", mode), q = fn(t.objectStore("audio")); t.oncomplete = () => ok(q && q.result); t.onerror = () => ko(t.error); }); };
 const idbGet = k => idb("readonly", s => s.get(k)), idbPut = (k, v) => idb("readwrite", s => s.put(v, k)), idbDel = k => idb("readwrite", s => s.delete(k)), idbKeys = () => idb("readonly", s => s.getAllKeys());
 const refreshHave = async () => { try { HAVE = new Set(await idbKeys()); } catch { HAVE = new Set(); } };
 const persist = () => navigator.storage && navigator.storage.persist && navigator.storage.persist().catch(() => {});
-async function initAudio() { try { AUD = await loadJSON("audio"); } catch {} await refreshHave(); }
+const meta = () => store.get("cmeta", {});
+function touchMeta(key, size) { const m = meta(); m[key] = [Date.now(), size != null ? size : (m[key] ? m[key][1] : 0)]; store.set("cmeta", m); }
+function updateCacheInfo() { const t = Object.values(meta()).reduce((s, v) => s + v[1], 0), e = $("#sCacheInfo"); if (e) e.textContent = Math.round(t / 1048576) + " Mo utilisés"; }
+async function evict(keep) {   // supprime les plus anciennes sourates enregistrées au-delà de la limite
+  const m = meta(), cap = AP.cap * 1048576; let tot = Object.values(m).reduce((s, v) => s + v[1], 0);
+  for (const [k] of Object.entries(m).sort((x, y) => x[1][0] - y[1][0])) { if (tot <= cap) break; if (k === keep) continue; try { await idbDel(k); } catch {} tot -= m[k][1]; delete m[k]; }
+  store.set("cmeta", m); await refreshHave(); updateCacheInfo();
+}
+async function initAudio() { try { AUD = await loadJSON("audio"); } catch {} await refreshHave(); updateCacheInfo(); }
 const LOCAL = {id:"local", name:"Mes fichiers (sur cet appareil)", local:true};
 const reciters = () => [...AUD.filter(r => r.available && r.available.length), LOCAL];
 const sName = n => `${n}. ${nm(n)}`;
 const nums = r => r.local ? [...HAVE].filter(k => k.startsWith("local:")).map(k => +k.slice(6)).sort((a, b) => a - b) : r.available;
 const url3 = (r, n) => `${r.base}${r.pad === false ? n : String(n).padStart(3, "0")}.mp3`;
-const msg = h => { const m = $("#aMsg"); if (m) m.innerHTML = h; };
+const fileName = n => `${String(n).padStart(3, "0")}-${nm(n).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^A-Za-z0-9-]/g, "")}.mp3`;
+const note = h => { const m = $("#aMsg"); if (m) m.innerHTML = h; const p = $("#pMsg"); if (p) p.innerHTML = h; };
+const fmtT = s => !isFinite(s) ? "0:00" : `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, "0")}`;
 function rows(r) {
   const ns = nums(r); if (!ns.length) return "";
   return `<ul class="rows">${ns.map(n => { const off = HAVE.has(`${r.id}:${n}`);
-    return `<li data-n="${n}" data-r="${r.id}"><span class="tap"><b>${sName(n)}</b> <span class="ar" style="font-size:1.15rem;line-height:1.6">${SURAHS[n - 1][0]}</span>${off && !r.local ? ' <span class="muted small">✓ sur l\'appareil</span>' : ""}</span><span class="acts">` +
+    return `<li data-n="${n}" data-r="${r.id}"><span class="tap"><b>${sName(n)}</b> <span class="ar" style="font-size:1.15rem;line-height:1.6">${SURAHS[n - 1][0]}</span>${off && !r.local ? ' <span class="muted small">✓ hors connexion</span>' : ""}</span><span class="acts">` +
       `<button class="star" data-act="play" aria-label="Lecture ou pause">▶</button>` +
-      (r.local ? `<button class="star" data-act="del" aria-label="Supprimer">✕</button>` : `<button class="star" data-act="dl" aria-label="Télécharger">⬇</button>` + (off ? `<button class="star" data-act="del" aria-label="Retirer la copie de l'appareil">✕</button>` : "")) +
-      `</span></li>`; }).join("")}</ul>`;
+      `<button class="star" data-act="dl" aria-label="Enregistrer sur le téléphone">⬇</button>` +
+      (r.local || off ? `<button class="star" data-act="del" aria-label="Supprimer de cet appareil">✕</button>` : "") + `</span></li>`; }).join("")}</ul>`;
 }
 function renderAudio() {
   const RS = reciters(); aRec = Math.min(aRec, RS.length - 1); const r = RS[aRec];
   const prev = typeof PREVIEW !== "undefined" ? `<p class="card">Aperçu : l'hébergeur de cet aperçu bloque l'écoute en ligne et le téléchargement. Ils fonctionnent dans l'application déployée.</p>` : "";
   $("#aList").innerHTML = prev + `<label>Récitateur<select id="aSel">${RS.map((x, i) => `<option value="${i}">${x.name}</option>`).join("")}</select></label>
-    <label class="row"><input type="checkbox" id="aAuto" ${store.get("autonext", true) ? "checked" : ""}> Lecture automatique de la sourate suivante</label>` +
+    <label class="row"><input type="checkbox" id="aAuto" ${AP.auto ? "checked" : ""}> Lecture automatique de la sourate suivante</label>` +
     (r.local ? `<p class="muted small">Ajoutez vos propres fichiers audio, nommés 001.mp3 (Al-Fâtiha) à 114.mp3. Ils restent sur cet appareil, marchent sans connexion et ne sont envoyés nulle part.</p>
       <label class="filebtn">Ajouter des fichiers<input id="aFiles" type="file" accept="audio/*" multiple hidden></label>`
-      : `<p class="muted small">Source : <a href="${r.source}" rel="noopener">${r.source}</a> · ${r.licence}. ⬇ enregistre la sourate sur votre téléphone et la garde disponible sans connexion.</p>`) +
+      : `<p class="muted small">Source : <a href="${r.source}" rel="noopener">${r.source}</a> · ${r.licence}</p><p class="muted small">Écoute en ligne, directement depuis le serveur de la source. ⬇ télécharge la sourate sur votre téléphone. Pour réécouter sans connexion, activez « Enregistrer automatiquement » dans Paramètres.</p>`) +
     `<p class="muted small" id="aMsg"></p>` + rows(r);
   $("#aSel").value = aRec; $("#aSel").onchange = e => { aRec = +e.target.value; renderAudio(); };
-  $("#aAuto").onchange = e => store.set("autonext", e.target.checked);
+  $("#aAuto").onchange = e => { AP.auto = e.target.checked; saveAP(); };
   const f = $("#aFiles"); if (f) f.onchange = async e => {
     let k = 0; try { for (const file of e.target.files) { const n = +((file.name.replace(/\.[^.]*$/, "").match(/\d+/) || [])[0]); if (n >= 1 && n <= 114) { await idbPut(`local:${n}`, file); k++; } } persist(); }
-    catch { msg("Stockage indisponible sur cet appareil (navigation privée ?)."); return; }
-    await refreshHave(); renderAudio(); msg(k ? `${k} fichier(s) ajouté(s).` : "Nom de fichier non reconnu : utilisez 001.mp3 à 114.mp3.");
+    catch { note("Stockage indisponible sur cet appareil (navigation privée ?)."); return; }
+    await refreshHave(); renderAudio(); note(k ? `${k} fichier(s) ajouté(s).` : "Nom de fichier non reconnu : utilisez 001.mp3 à 114.mp3.");
   };
   markPlaying();
 }
 function markPlaying() {
-  const el = $("#aEl");
+  const el = $("#aEl"), playing = !el.paused;
   $$("#aList li[data-n]").forEach(li => { const on = aCur && aCur.id === li.dataset.r && aCur.n === +li.dataset.n; li.classList.toggle("now", !!on);
-    const b = li.querySelector("[data-act=play]"); if (b) b.textContent = on && !el.paused ? "⏸" : "▶"; });
+    const b = li.querySelector("[data-act=play]"); if (b) b.textContent = on && playing ? "⏸" : "▶"; });
+  $("#pPlay").textContent = playing ? "⏸" : "▶";
 }
+function showPlayer(on = true) { $("#player").hidden = !on; document.body.classList.toggle("hasplayer", on); }
 function unlockAudio() { if (unlocked) return; unlocked = true; const el = $("#aEl"); el.src = SILENT; el.play().catch(() => {}); }   // iPhone : autorise la lecture ensuite
 function saveBlob(blob, name) { const u = URL.createObjectURL(blob), a = document.createElement("a"); a.href = u; a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(u), 60000); }
-async function download(r, n) {
-  msg(`Téléchargement : ${sName(n)}…`);
+async function saveFile(r, n) {   // téléchargement : directement depuis le CDN vers le téléphone (rien ne passe par le site)
+  const key = `${r.id}:${n}`;
+  try { if (HAVE.has(key)) { const b = await idbGet(key); if (b) { saveBlob(b, fileName(n)); note(`${sName(n)} : enregistrée dans les téléchargements de votre téléphone.`); return; } } } catch {}
+  if (r.local) return;
+  note(`Téléchargement de ${sName(n)}…`);
   try {
-    const res = await fetch(url3(r, n)); if (!res.ok) throw new Error("HTTP " + res.status);
-    const blob = await res.blob();
-    try { await idbPut(`${r.id}:${n}`, blob); persist(); await refreshHave(); } catch {}
-    saveBlob(blob, `${String(n).padStart(3, "0")}-${nm(n).normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^A-Za-z0-9-]/g, "")}.mp3`); renderAudio(); msg(`${sName(n)} : enregistrée sur votre appareil.`);
+    const res = await fetch(url3(r, n)); if (!res.ok) throw 0;
+    if ((+res.headers.get("content-length") || 0) > 150 * 1048576) throw 0;
+    saveBlob(await res.blob(), fileName(n)); note(`${sName(n)} : enregistrée. Retrouvez le fichier dans « Téléchargements » (Android) ou « Fichiers » (iPhone).`);
   } catch {
-    msg(`Téléchargement bloqué par le navigateur. <a href="${esc(url3(r, n))}" target="_blank" rel="noopener" download>Ouvrir le fichier</a>, puis menu ⋮ ou Partager &gt; Enregistrer.`);
+    note(`Le téléchargement direct est bloqué par le navigateur. <a href="${esc(url3(r, n))}" target="_blank" rel="noopener">Ouvrir le fichier</a>, puis menu ⋮ ou Partager &gt; Enregistrer.`);
   }
+}
+async function cacheSurah(r, n) {   // enregistrement automatique pendant l'écoute
+  const key = `${r.id}:${n}`; if (!AP.cache || r.local || HAVE.has(key)) return;
+  const cn = navigator.connection; if (cn && cn.saveData) return;                         // mode économie de données du téléphone : on respecte
+  if (cacheCtl) cacheCtl.abort(); const ctl = cacheCtl = new AbortController();
+  try {
+    const res = await fetch(url3(r, n), {signal:ctl.signal, priority:"low"}); if (!res.ok) throw 0;
+    const len = +res.headers.get("content-length") || 0; if (len > 150 * 1048576) return;
+    let blob; if (res.body && res.body.getReader) { const rd = res.body.getReader(), parts = []; let got = 0;
+      for (;;) { const {done, value} = await rd.read(); if (done) break; parts.push(value); got += value.length; if (len && aCur && aCur.key === key) $("#pMsg").textContent = `Enregistrement pour l'écoute hors connexion… ${Math.round(got / len * 100)} %`; }
+      blob = new Blob(parts, {type:"audio/mpeg"}); } else blob = await res.blob();
+    await idbPut(key, blob); touchMeta(key, blob.size); persist(); await evict(key); await refreshHave(); markPlaying();
+    if (aCur && aCur.key === key) $("#pMsg").textContent = "✓ Enregistrée : écoute rapide et sans connexion.";
+    if ($(`#aList li[data-n="${n}"][data-r="${r.id}"]`)) renderAudio();
+  } catch (e) { if (e.name !== "AbortError" && aCur && aCur.key === key) $("#pMsg").textContent = "Enregistrement automatique impossible (connexion ou espace insuffisant)."; }
+}
+function watchCache(r, n) {   // démarre l'enregistrement quand la lecture est bien lancée (ou après 30 s)
+  let i = 0; const t = setInterval(() => { const el = $("#aEl"); if (!aCur || aCur.n !== n || aCur.id !== r.id) return clearInterval(t);
+    const b = el.buffered, ahead = b.length ? b.end(b.length - 1) - el.currentTime : 0;
+    if (ahead >= 15 || ++i >= 15) { clearInterval(t); cacheSurah(r, n); } }, 2000);
+}
+function step(dir) {
+  if (!aCur) return false; const r = reciters().find(x => x.id === aCur.id), ns = nums(r); let j = ns.indexOf(aCur.n) + dir;
+  if (j < 0 || j >= ns.length) { if (AP.rep === "all") j = (j + ns.length) % ns.length; else return false; }
+  playSurah(aCur.id, ns[j]); return true;
 }
 async function playSurah(id, n) {
   const r = reciters().find(x => x.id === id), el = $("#aEl");
   if (aCur && aCur.id === id && aCur.n === n && el.src && el.src !== SILENT) { el.paused ? el.play().catch(() => {}) : el.pause(); return; }   // même sourate : lecture/pause
-  aCur = {id, n}; $("#aPlayer").hidden = false; $("#aNow").textContent = `${sName(n)} · ${r.name}`;
-  let src = r.local ? null : url3(r, n);
-  if (HAVE.has(`${id}:${n}`)) { try { const b = await idbGet(`${id}:${n}`); if (b) { if (aURL) URL.revokeObjectURL(aURL); src = aURL = URL.createObjectURL(b); } } catch {} }
+  if (cacheCtl) cacheCtl.abort();
+  aCur = {id, n, key:`${id}:${n}`}; showPlayer(); $("#pTitle").textContent = `${sName(n)} · ${r.name}`; $("#pMsg").textContent = "";
+  let src = r.local ? null : url3(r, n), cached = false;
+  if (HAVE.has(aCur.key)) { try { const b = await idbGet(aCur.key); if (b) { if (aURL) URL.revokeObjectURL(aURL); src = aURL = URL.createObjectURL(b); cached = true; if (!r.local) touchMeta(aCur.key); } } catch {} }
   if (!aCur || aCur.id !== id || aCur.n !== n || !src) return;
-  el.src = src; el.play().catch(() => { $("#aNow").textContent = "Lecture bloquée : touchez ▶ dans le lecteur."; });
-  if ("mediaSession" in navigator) {
-    const ns = nums(r), i = ns.indexOf(n), ms = navigator.mediaSession;
-    ms.metadata = new MediaMetadata({title:sName(n), artist:r.name, album:"NUR"});
-    ms.setActionHandler("play", () => el.play()); ms.setActionHandler("pause", () => el.pause());
-    ms.setActionHandler("nexttrack", i >= 0 && i < ns.length - 1 ? () => playSurah(id, ns[i + 1]) : null);
-    ms.setActionHandler("previoustrack", i > 0 ? () => playSurah(id, ns[i - 1]) : null);
+  el.src = src; el.playbackRate = AP.spd; el.play().catch(() => { $("#pMsg").textContent = "Lecture bloquée : touchez ▶."; });
+  if ("mediaSession" in navigator) {   // commandes de l'écran verrouillé, des notifications et des écouteurs Bluetooth
+    const ms = navigator.mediaSession;
+    ms.metadata = new MediaMetadata({title:sName(n), artist:r.name, album:"NUR", artwork:typeof PREVIEW === "undefined" ? [{src:"/static/icon-512.png", sizes:"512x512", type:"image/png"}] : []});
+    const set = (a, f) => { try { ms.setActionHandler(a, f); } catch {} };
+    set("play", () => el.play()); set("pause", () => el.pause()); set("previoustrack", () => step(-1)); set("nexttrack", () => step(1));
+    set("seekbackward", () => skip(-10)); set("seekforward", () => skip(10));
   }
-  markPlaying();
+  markPlaying(); if (!cached && !r.local) watchCache(r, n);
 }
+const skip = d => { const el = $("#aEl"); if (isFinite(el.duration)) el.currentTime = Math.max(0, Math.min(el.duration, el.currentTime + d)); };
 $("#aList").addEventListener("click", async e => {
   const li = e.target.closest("li[data-n]"); if (!li) return;
   const n = +li.dataset.n, id = li.dataset.r, r = reciters().find(x => x.id === id), act = e.target.dataset.act || "play";
   if (act === "play") { unlockAudio(); playSurah(id, n); }
-  else if (act === "dl") download(r, n);
-  else { try { await idbDel(`${id}:${n}`); } catch {} await refreshHave(); renderAudio(); }
+  else if (act === "dl") saveFile(r, n);
+  else { try { await idbDel(`${id}:${n}`); const m = meta(); delete m[`${id}:${n}`]; store.set("cmeta", m); } catch {} await refreshHave(); updateCacheInfo(); renderAudio(); }
 });
-for (const ev of ["play", "pause", "ended"]) $("#aEl").addEventListener(ev, markPlaying);
-$("#aEl").addEventListener("error", () => { if ($("#aEl").src === SILENT) return; $("#aNow").textContent = navigator.onLine === false ? "Pas de connexion : touchez ⬇ sur une sourate quand vous avez du réseau, ou ajoutez vos fichiers." : "Fichier introuvable pour cette sourate."; });
-$("#aEl").addEventListener("ended", () => {
-  if (!aCur || !store.get("autonext", true)) return;
-  const r = reciters().find(x => x.id === aCur.id), ns = nums(r), i = ns.indexOf(aCur.n); if (i >= 0 && i < ns.length - 1) playSurah(aCur.id, ns[i + 1]);
-});
+/* contrôles du lecteur */
+$("#pPlay").onclick = () => { const el = $("#aEl"); if (!aCur) return; el.paused ? el.play().catch(() => {}) : el.pause(); };
+$("#pPrev").onclick = () => { const el = $("#aEl"); if (el.currentTime > 5) el.currentTime = 0; else step(-1); };
+$("#pNext").onclick = () => step(1); $("#pBack").onclick = () => skip(-10); $("#pFwd").onclick = () => skip(10);
+$("#pClose").onclick = () => { const el = $("#aEl"); el.pause(); aCur = null; el.removeAttribute("src"); el.load(); if (cacheCtl) cacheCtl.abort(); showPlayer(false); markPlaying(); };
+const REP = {off:"🔁 Répéter : non", one:"🔂 Répéter : cette sourate", all:"🔁 Répéter : tout"};
+function drawOpts() { const r = $("#pRep"); r.textContent = REP[AP.rep]; r.classList.toggle("on", AP.rep !== "off"); $("#pSpd").textContent = AP.spd + "×"; $("#pSpd").classList.toggle("on", AP.spd !== 1); }
+$("#pRep").onclick = () => { AP.rep = {off:"one", one:"all", all:"off"}[AP.rep]; saveAP(); drawOpts(); };
+$("#pSpd").onclick = () => { const L = [1, 1.25, 1.5, 0.75]; AP.spd = L[(L.indexOf(AP.spd) + 1) % L.length]; $("#aEl").playbackRate = AP.spd; saveAP(); drawOpts(); };
+$("#pSleep").onclick = () => { const L = [0, 15, 30, 60], cur = +($("#pSleep").dataset.m || 0), m = L[(L.indexOf(cur) + 1) % L.length]; clearTimeout(sleepT); $("#pSleep").dataset.m = m;
+  $("#pSleep").textContent = m ? `⏲ Arrêt dans ${m} min` : "⏲ Minuteur"; $("#pSleep").classList.toggle("on", !!m);
+  if (m) sleepT = setTimeout(() => { $("#aEl").pause(); $("#pSleep").dataset.m = 0; $("#pSleep").textContent = "⏲ Minuteur"; $("#pSleep").classList.remove("on"); }, m * 60000); };
+$("#pSave").onclick = () => { if (aCur) saveFile(reciters().find(x => x.id === aCur.id), aCur.n); };
+const seek = $("#pSeek"); seek.addEventListener("input", () => { seeking = true; const el = $("#aEl"); if (isFinite(el.duration)) $("#pTime").textContent = `${fmtT(seek.value / 1000 * el.duration)} / ${fmtT(el.duration)}`; });
+seek.addEventListener("change", () => { const el = $("#aEl"); if (isFinite(el.duration)) el.currentTime = seek.value / 1000 * el.duration; seeking = false; });
+const A = $("#aEl");
+A.addEventListener("timeupdate", () => { if (seeking || !isFinite(A.duration)) return; seek.value = A.duration ? A.currentTime / A.duration * 1000 : 0; $("#pTime").textContent = `${fmtT(A.currentTime)} / ${fmtT(A.duration)}`;
+  if ("mediaSession" in navigator && navigator.mediaSession.setPositionState) { try { navigator.mediaSession.setPositionState({duration:A.duration, playbackRate:A.playbackRate, position:A.currentTime}); } catch {} } });
+A.addEventListener("loadedmetadata", () => { if (isFinite(A.duration)) $("#pTime").textContent = `0:00 / ${fmtT(A.duration)}`; });
+for (const ev of ["play", "pause"]) A.addEventListener(ev, markPlaying);
+A.addEventListener("waiting", () => { if (aCur) $("#pMsg").textContent = "Chargement… (connexion lente)"; });
+A.addEventListener("playing", () => { const m = $("#pMsg"); if (m.textContent.startsWith("Chargement")) m.textContent = ""; markPlaying(); });
+A.addEventListener("error", () => { if (!aCur || A.src === SILENT) return; $("#pMsg").textContent = navigator.onLine === false ? "Pas de connexion : écoutez une sourate déjà enregistrée, ou ajoutez vos fichiers." : "Fichier introuvable pour cette sourate."; });
+A.addEventListener("ended", () => { markPlaying(); if (!aCur) return; if (AP.rep === "one") { A.currentTime = 0; A.play().catch(() => {}); return; } if (AP.auto || AP.rep === "all") step(1); });
+drawOpts();
+/* réglages de l'espace audio */
+$("#sCache").checked = AP.cache; $("#sCap").value = String(AP.cap);
+$("#sCache").onchange = e => { AP.cache = e.target.checked; saveAP(); };
+$("#sCap").onchange = e => { AP.cap = +e.target.value; saveAP(); evict(); };
+$("#sCacheClear").onclick = async () => { for (const k of Object.keys(meta())) { try { await idbDel(k); } catch {} } store.set("cmeta", {}); await refreshHave(); updateCacheInfo(); renderAudio(); };
+
+/* ---------- 99 Noms d'Allah ---------- */
+let NOMS = [];
+function renderNoms(f = "") { const q = f.trim().toLowerCase();
+  $("#nList").innerHTML = NOMS.filter(x => !q || String(x.n) === q || norm(x.ph).includes(norm(q)) || norm(x.fr).includes(norm(q)) || norm(x.ar).includes(norm(q)))
+    .map(x => `<li><span class="nb">${x.n}</span><span class="nt"><b>${x.ph}</b><br><span class="muted small">${x.fr}</span></span><span class="ar nar">${x.ar}</span></li>`).join("") || "<li>Aucun résultat</li>"; }
+async function initNoms() { try { NOMS = await loadJSON("noms"); } catch {} renderNoms(); }
+$("#nSearch").addEventListener("input", e => renderNoms(e.target.value));
+
+/* ---------- Suggestions ---------- */
+$("#ideaSend").onclick = async () => {
+  const t = $("#ideaTxt").value.trim(), m = $("#ideaMsg");
+  if (t.length < 5) { m.textContent = "Écrivez au moins quelques mots."; return; }
+  if (Date.now() - store.get("ideaT", 0) < 60000) { m.textContent = "Merci ! Patientez une minute avant d'en envoyer une autre."; return; }
+  $("#ideaSend").disabled = true;
+  try { const r = await fetch("/api/suggest", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({t, c:$("#ideaC").value, website:$("#ideaHp").value})});
+    if (r.status === 429) throw "rl"; if (!r.ok) throw 0; store.set("ideaT", Date.now()); $("#ideaTxt").value = ""; m.textContent = "Merci ! Votre suggestion a bien été envoyée 🤲"; }
+  catch (e) { m.textContent = e === "rl" ? "Trop de messages d'un coup : réessayez dans une minute." : "Envoi impossible pour le moment. Réessayez plus tard."; }
+  $("#ideaSend").disabled = false;
+};
 
 /* ---------- Dons ---------- */
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 async function initDon() {
   let d = {}; try { d = await loadJSON("don"); } catch {}
   const m = d.methods || [];
-  $("#donList").innerHTML = m.length ? m.map(x => `<li><span>${esc(x.label)}<br><span class="muted small">${esc(x.value || "")}</span></span>` +
-    (x.url && /^https:\/\//.test(x.url) ? `<a class="btnlink" href="${esc(x.url)}" rel="noopener">Donner</a>` : `<button class="ghost" data-copy="${esc(x.value || "")}">Copier</button>`) + `</li>`).join("")
-    : "";
+  $("#donList").innerHTML = m.length ? m.map(x => x.tel
+    ? `<li><span>${esc(x.label)}<br><span class="muted small">${esc(x.note || "")}</span></span><span class="acts"><a class="btnlink" href="tel:${esc(x.tel)}">Donner</a> <button class="ghost" data-copy="${esc(x.tel)}">Copier</button></span></li>`
+    : `<li><span>${esc(x.label)}<br><span class="muted small">${esc(x.value || "")}</span></span>` + (x.url && /^https:\/\//.test(x.url) ? `<a class="btnlink" href="${esc(x.url)}" rel="noopener">Donner</a>` : `<button class="ghost" data-copy="${esc(x.value || "")}">Copier</button>`) + `</li>`).join("") : "";
   $("#donNote").textContent = m.length ? "" : "Les moyens de don seront annoncés très bientôt.";
   $("#donTr").textContent = d.transparence || "";
 }
@@ -449,5 +537,5 @@ function initSettings() {
 
 /* ---------- Démarrage ---------- */
 applyTheme(); initSettings(); compute(); tick(); drawT(); route();
-initDon(); nudgeUI(); installUI(); Promise.all([initQuran(), initAudio()]).then(renderAudio); initDhikr();
+initDon(); nudgeUI(); installUI(); Promise.all([initQuran(), initAudio()]).then(renderAudio); initNoms(); initDhikr();
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js", {scope:"/"}).catch(() => {});

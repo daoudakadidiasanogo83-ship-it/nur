@@ -1,0 +1,596 @@
+[
+ {
+  "n": 1,
+  "ar": "الرَّحْمَنُ",
+  "ph": "Ar-Raḥmân",
+  "fr": "Le Tout Miséricordieux"
+ },
+ {
+  "n": 2,
+  "ar": "الرَّحِيمُ",
+  "ph": "Ar-Raḥîm",
+  "fr": "Le Très Miséricordieux"
+ },
+ {
+  "n": 3,
+  "ar": "الْمَلِكُ",
+  "ph": "Al-Malik",
+  "fr": "Le Souverain, le Roi"
+ },
+ {
+  "n": 4,
+  "ar": "الْقُدُّوسُ",
+  "ph": "Al-Quddûs",
+  "fr": "Le Saint, le Pur"
+ },
+ {
+  "n": 5,
+  "ar": "السَّلَامُ",
+  "ph": "As-Salâm",
+  "fr": "La Paix, Celui qui est exempt de tout défaut"
+ },
+ {
+  "n": 6,
+  "ar": "الْمُؤْمِنُ",
+  "ph": "Al-Mu’min",
+  "fr": "Celui qui accorde la sécurité"
+ },
+ {
+  "n": 7,
+  "ar": "الْمُهَيْمِنُ",
+  "ph": "Al-Muhaymin",
+  "fr": "Le Protecteur, le Gardien vigilant"
+ },
+ {
+  "n": 8,
+  "ar": "الْعَزِيزُ",
+  "ph": "Al-ʿAzîz",
+  "fr": "Le Tout-Puissant, le Puissant"
+ },
+ {
+  "n": 9,
+  "ar": "الْجَبَّارُ",
+  "ph": "Al-Jabbâr",
+  "fr": "Celui qui domine et remédie"
+ },
+ {
+  "n": 10,
+  "ar": "الْمُتَكَبِّرُ",
+  "ph": "Al-Mutakabbir",
+  "fr": "Le Suprême, le Grand en majesté"
+ },
+ {
+  "n": 11,
+  "ar": "الْخَالِقُ",
+  "ph": "Al-Khâliq",
+  "fr": "Le Créateur"
+ },
+ {
+  "n": 12,
+  "ar": "الْبَارِئُ",
+  "ph": "Al-Bâri’",
+  "fr": "Celui qui donne l’existence"
+ },
+ {
+  "n": 13,
+  "ar": "الْمُصَوِّرُ",
+  "ph": "Al-Muṣawwir",
+  "fr": "Celui qui façonne chaque être"
+ },
+ {
+  "n": 14,
+  "ar": "الْغَفَّارُ",
+  "ph": "Al-Ghaffâr",
+  "fr": "Celui qui pardonne sans cesse"
+ },
+ {
+  "n": 15,
+  "ar": "الْقَهَّارُ",
+  "ph": "Al-Qahhâr",
+  "fr": "Le Dominateur suprême"
+ },
+ {
+  "n": 16,
+  "ar": "الْوَهَّابُ",
+  "ph": "Al-Wahhâb",
+  "fr": "Le Donateur"
+ },
+ {
+  "n": 17,
+  "ar": "الرَّزَّاقُ",
+  "ph": "Ar-Razzâq",
+  "fr": "Le Pourvoyeur"
+ },
+ {
+  "n": 18,
+  "ar": "الْفَتَّاحُ",
+  "ph": "Al-Fattâḥ",
+  "fr": "Celui qui ouvre les portes du bien"
+ },
+ {
+  "n": 19,
+  "ar": "الْعَلِيمُ",
+  "ph": "Al-ʿAlîm",
+  "fr": "L’Omniscient"
+ },
+ {
+  "n": 20,
+  "ar": "الْقَابِضُ",
+  "ph": "Al-Qâbiḍ",
+  "fr": "Celui qui retient"
+ },
+ {
+  "n": 21,
+  "ar": "الْبَاسِطُ",
+  "ph": "Al-Bâsiṭ",
+  "fr": "Celui qui étend Ses bienfaits"
+ },
+ {
+  "n": 22,
+  "ar": "الْخَافِضُ",
+  "ph": "Al-Khâfiḍ",
+  "fr": "Celui qui abaisse"
+ },
+ {
+  "n": 23,
+  "ar": "الرَّافِعُ",
+  "ph": "Ar-Râfiʿ",
+  "fr": "Celui qui élève"
+ },
+ {
+  "n": 24,
+  "ar": "الْمُعِزُّ",
+  "ph": "Al-Muʿizz",
+  "fr": "Celui qui donne la puissance et l’honneur"
+ },
+ {
+  "n": 25,
+  "ar": "الْمُذِلُّ",
+  "ph": "Al-Mudhill",
+  "fr": "Celui qui humilie"
+ },
+ {
+  "n": 26,
+  "ar": "السَّمِيعُ",
+  "ph": "As-Samîʿ",
+  "fr": "L’Audient"
+ },
+ {
+  "n": 27,
+  "ar": "الْبَصِيرُ",
+  "ph": "Al-Baṣîr",
+  "fr": "Le Clairvoyant"
+ },
+ {
+  "n": 28,
+  "ar": "الْحَكَمُ",
+  "ph": "Al-Ḥakam",
+  "fr": "Le Juge"
+ },
+ {
+  "n": 29,
+  "ar": "الْعَدْلُ",
+  "ph": "Al-ʿAdl",
+  "fr": "Le Juste"
+ },
+ {
+  "n": 30,
+  "ar": "اللَّطِيفُ",
+  "ph": "Al-Laṭîf",
+  "fr": "Le Subtil, le Bienveillant"
+ },
+ {
+  "n": 31,
+  "ar": "الْخَبِيرُ",
+  "ph": "Al-Khabîr",
+  "fr": "Le Parfaitement Informé"
+ },
+ {
+  "n": 32,
+  "ar": "الْحَلِيمُ",
+  "ph": "Al-Ḥalîm",
+  "fr": "Le Longanime, le Clément"
+ },
+ {
+  "n": 33,
+  "ar": "الْعَظِيمُ",
+  "ph": "Al-ʿAẓîm",
+  "fr": "L’Immense"
+ },
+ {
+  "n": 34,
+  "ar": "الْغَفُورُ",
+  "ph": "Al-Ghafûr",
+  "fr": "Le Grand Pardonneur"
+ },
+ {
+  "n": 35,
+  "ar": "الشَّكُورُ",
+  "ph": "Ash-Shakûr",
+  "fr": "Le Très Reconnaissant"
+ },
+ {
+  "n": 36,
+  "ar": "الْعَلِيُّ",
+  "ph": "Al-ʿAliyy",
+  "fr": "Le Très-Haut"
+ },
+ {
+  "n": 37,
+  "ar": "الْكَبِيرُ",
+  "ph": "Al-Kabîr",
+  "fr": "Le Grand"
+ },
+ {
+  "n": 38,
+  "ar": "الْحَفِيظُ",
+  "ph": "Al-Ḥafîẓ",
+  "fr": "Le Gardien, le Préservateur"
+ },
+ {
+  "n": 39,
+  "ar": "الْمُقِيتُ",
+  "ph": "Al-Muqît",
+  "fr": "Celui qui pourvoit à la subsistance de tous"
+ },
+ {
+  "n": 40,
+  "ar": "الْحَسِيبُ",
+  "ph": "Al-Ḥasîb",
+  "fr": "Celui qui suffit et qui demande des comptes"
+ },
+ {
+  "n": 41,
+  "ar": "الْجَلِيلُ",
+  "ph": "Al-Jalîl",
+  "fr": "Le Majestueux"
+ },
+ {
+  "n": 42,
+  "ar": "الْكَرِيمُ",
+  "ph": "Al-Karîm",
+  "fr": "Le Généreux"
+ },
+ {
+  "n": 43,
+  "ar": "الرَّقِيبُ",
+  "ph": "Ar-Raqîb",
+  "fr": "Le Vigilant"
+ },
+ {
+  "n": 44,
+  "ar": "الْمُجِيبُ",
+  "ph": "Al-Mujîb",
+  "fr": "Celui qui exauce"
+ },
+ {
+  "n": 45,
+  "ar": "الْوَاسِعُ",
+  "ph": "Al-Wâsiʿ",
+  "fr": "Le Vaste, Celui dont la grâce est immense"
+ },
+ {
+  "n": 46,
+  "ar": "الْحَكِيمُ",
+  "ph": "Al-Ḥakîm",
+  "fr": "Le Sage"
+ },
+ {
+  "n": 47,
+  "ar": "الْوَدُودُ",
+  "ph": "Al-Wadûd",
+  "fr": "Le Très Affectueux"
+ },
+ {
+  "n": 48,
+  "ar": "الْمَجِيدُ",
+  "ph": "Al-Majîd",
+  "fr": "Le Glorieux"
+ },
+ {
+  "n": 49,
+  "ar": "الْبَاعِثُ",
+  "ph": "Al-Bâʿith",
+  "fr": "Celui qui ressuscite"
+ },
+ {
+  "n": 50,
+  "ar": "الشَّهِيدُ",
+  "ph": "Ash-Shahîd",
+  "fr": "Le Témoin"
+ },
+ {
+  "n": 51,
+  "ar": "الْحَقُّ",
+  "ph": "Al-Ḥaqq",
+  "fr": "La Vérité"
+ },
+ {
+  "n": 52,
+  "ar": "الْوَكِيلُ",
+  "ph": "Al-Wakîl",
+  "fr": "Le Garant, Celui à qui l’on se confie"
+ },
+ {
+  "n": 53,
+  "ar": "الْقَوِيُّ",
+  "ph": "Al-Qawiyy",
+  "fr": "Le Fort"
+ },
+ {
+  "n": 54,
+  "ar": "الْمَتِينُ",
+  "ph": "Al-Matîn",
+  "fr": "L’Inébranlable"
+ },
+ {
+  "n": 55,
+  "ar": "الْوَلِيُّ",
+  "ph": "Al-Waliyy",
+  "fr": "Le Protecteur, l’Allié"
+ },
+ {
+  "n": 56,
+  "ar": "الْحَمِيدُ",
+  "ph": "Al-Ḥamîd",
+  "fr": "Le Digne de louange"
+ },
+ {
+  "n": 57,
+  "ar": "الْمُحْصِي",
+  "ph": "Al-Muḥṣî",
+  "fr": "Celui qui dénombre toute chose"
+ },
+ {
+  "n": 58,
+  "ar": "الْمُبْدِئُ",
+  "ph": "Al-Mubdi’",
+  "fr": "Celui qui commence la création"
+ },
+ {
+  "n": 59,
+  "ar": "الْمُعِيدُ",
+  "ph": "Al-Muʿîd",
+  "fr": "Celui qui ramène les créatures à la vie"
+ },
+ {
+  "n": 60,
+  "ar": "الْمُحْيِي",
+  "ph": "Al-Muḥyî",
+  "fr": "Celui qui donne la vie"
+ },
+ {
+  "n": 61,
+  "ar": "الْمُمِيتُ",
+  "ph": "Al-Mumît",
+  "fr": "Celui qui donne la mort"
+ },
+ {
+  "n": 62,
+  "ar": "الْحَيُّ",
+  "ph": "Al-Ḥayy",
+  "fr": "Le Vivant"
+ },
+ {
+  "n": 63,
+  "ar": "الْقَيُّومُ",
+  "ph": "Al-Qayyûm",
+  "fr": "Celui qui subsiste par Lui-même et soutient toute chose"
+ },
+ {
+  "n": 64,
+  "ar": "الْوَاجِدُ",
+  "ph": "Al-Wâjid",
+  "fr": "Celui à qui rien n’échappe"
+ },
+ {
+  "n": 65,
+  "ar": "الْمَاجِدُ",
+  "ph": "Al-Mâjid",
+  "fr": "Le Noble, le Magnifique"
+ },
+ {
+  "n": 66,
+  "ar": "الْوَاحِدُ",
+  "ph": "Al-Wâḥid",
+  "fr": "L’Unique"
+ },
+ {
+  "n": 67,
+  "ar": "الْأَحَدُ",
+  "ph": "Al-Aḥad",
+  "fr": "L’Un, l’Indivisible"
+ },
+ {
+  "n": 68,
+  "ar": "الصَّمَدُ",
+  "ph": "Aṣ-Ṣamad",
+  "fr": "L’Absolu, Celui vers qui tous se tournent"
+ },
+ {
+  "n": 69,
+  "ar": "الْقَادِرُ",
+  "ph": "Al-Qâdir",
+  "fr": "Le Capable"
+ },
+ {
+  "n": 70,
+  "ar": "الْمُقْتَدِرُ",
+  "ph": "Al-Muqtadir",
+  "fr": "Le Tout-Déterminant"
+ },
+ {
+  "n": 71,
+  "ar": "الْمُقَدِّمُ",
+  "ph": "Al-Muqaddim",
+  "fr": "Celui qui avance ce qu’Il veut"
+ },
+ {
+  "n": 72,
+  "ar": "الْمُؤَخِّرُ",
+  "ph": "Al-Mu’akhkhir",
+  "fr": "Celui qui retarde ce qu’Il veut"
+ },
+ {
+  "n": 73,
+  "ar": "الْأَوَّلُ",
+  "ph": "Al-Awwal",
+  "fr": "Le Premier"
+ },
+ {
+  "n": 74,
+  "ar": "الْآخِرُ",
+  "ph": "Al-Âkhir",
+  "fr": "Le Dernier"
+ },
+ {
+  "n": 75,
+  "ar": "الظَّاهِرُ",
+  "ph": "Aẓ-Ẓâhir",
+  "fr": "L’Apparent"
+ },
+ {
+  "n": 76,
+  "ar": "الْبَاطِنُ",
+  "ph": "Al-Bâṭin",
+  "fr": "Le Caché"
+ },
+ {
+  "n": 77,
+  "ar": "الْوَالِي",
+  "ph": "Al-Wâlî",
+  "fr": "Le Maître qui gouverne toute chose"
+ },
+ {
+  "n": 78,
+  "ar": "الْمُتَعَالِي",
+  "ph": "Al-Mutaʿâlî",
+  "fr": "Le Très Élevé"
+ },
+ {
+  "n": 79,
+  "ar": "الْبَرُّ",
+  "ph": "Al-Barr",
+  "fr": "Le Bienfaisant"
+ },
+ {
+  "n": 80,
+  "ar": "التَّوَّابُ",
+  "ph": "At-Tawwâb",
+  "fr": "Celui qui accueille le repentir"
+ },
+ {
+  "n": 81,
+  "ar": "الْمُنْتَقِمُ",
+  "ph": "Al-Muntaqim",
+  "fr": "Celui qui châtie avec justice"
+ },
+ {
+  "n": 82,
+  "ar": "الْعَفُوُّ",
+  "ph": "Al-ʿAfuww",
+  "fr": "Celui qui efface les péchés"
+ },
+ {
+  "n": 83,
+  "ar": "الرَّءُوفُ",
+  "ph": "Ar-Ra’ûf",
+  "fr": "Le Compatissant"
+ },
+ {
+  "n": 84,
+  "ar": "مَالِكُ الْمُلْكِ",
+  "ph": "Mâlik al-Mulk",
+  "fr": "Le Maître de la Royauté"
+ },
+ {
+  "n": 85,
+  "ar": "ذُو الْجَلَالِ وَالْإِكْرَامِ",
+  "ph": "Dhû l-Jalâli wa l-Ikrâm",
+  "fr": "Le Détenteur de la Majesté et de la Générosité"
+ },
+ {
+  "n": 86,
+  "ar": "الْمُقْسِطُ",
+  "ph": "Al-Muqsiṭ",
+  "fr": "L’Équitable"
+ },
+ {
+  "n": 87,
+  "ar": "الْجَامِعُ",
+  "ph": "Al-Jâmiʿ",
+  "fr": "Celui qui rassemble"
+ },
+ {
+  "n": 88,
+  "ar": "الْغَنِيُّ",
+  "ph": "Al-Ghaniyy",
+  "fr": "Le Riche par Lui-même"
+ },
+ {
+  "n": 89,
+  "ar": "الْمُغْنِي",
+  "ph": "Al-Mughnî",
+  "fr": "Celui qui enrichit"
+ },
+ {
+  "n": 90,
+  "ar": "الْمَانِعُ",
+  "ph": "Al-Mâniʿ",
+  "fr": "Celui qui empêche et protège"
+ },
+ {
+  "n": 91,
+  "ar": "الضَّارُّ",
+  "ph": "Aḍ-Ḍârr",
+  "fr": "Celui qui envoie l’épreuve, selon Sa sagesse"
+ },
+ {
+  "n": 92,
+  "ar": "النَّافِعُ",
+  "ph": "An-Nâfiʿ",
+  "fr": "Celui qui accorde le bien"
+ },
+ {
+  "n": 93,
+  "ar": "النُّورُ",
+  "ph": "An-Nûr",
+  "fr": "La Lumière"
+ },
+ {
+  "n": 94,
+  "ar": "الْهَادِي",
+  "ph": "Al-Hâdî",
+  "fr": "Le Guide"
+ },
+ {
+  "n": 95,
+  "ar": "الْبَدِيعُ",
+  "ph": "Al-Badîʿ",
+  "fr": "L’Incomparable, Celui qui crée sans modèle"
+ },
+ {
+  "n": 96,
+  "ar": "الْبَاقِي",
+  "ph": "Al-Bâqî",
+  "fr": "Le Permanent, l’Éternel"
+ },
+ {
+  "n": 97,
+  "ar": "الْوَارِثُ",
+  "ph": "Al-Wârith",
+  "fr": "L’Héritier"
+ },
+ {
+  "n": 98,
+  "ar": "الرَّشِيدُ",
+  "ph": "Ar-Rashîd",
+  "fr": "Celui qui guide vers la droiture"
+ },
+ {
+  "n": 99,
+  "ar": "الصَّبُورُ",
+  "ph": "Aṣ-Ṣabûr",
+  "fr": "Le Patient"
+ }
+]
