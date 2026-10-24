@@ -114,18 +114,48 @@ async function getSurah(n) {
   try { await idbPut("q:" + n, JSON.stringify(s)); } catch {}
   return s;
 }
+async function phonId() {   // édition « translittération » d'Al Quran Cloud, repérée une fois puis mémorisée
+  const c = store.get("phed", ""); if (c) return c;
+  try { const r = await fetch("https://api.alquran.cloud/v1/edition?type=transliteration&language=en"); if (r.ok) { const d = (await r.json()).data; if (d && d[0] && d[0].identifier) { store.set("phed", d[0].identifier); return d[0].identifier; } } } catch {}
+  return "en.transliteration";
+}
+async function getPhon(n) {   // phonétique (lettres latines) de chaque verset ; null si indisponible
+  const loc = QURAN && QURAN.find(x => x.n === n); if (loc && loc.verses[0] && loc.verses[0].ph) return loc.verses.map(v => v.ph);   // texte importé
+  try { const c = await idbGet("qp:" + n); if (c) return JSON.parse(c); } catch {}                                                   // déjà chargée : lisible hors connexion
+  try {
+    const res = await fetch(`https://api.alquran.cloud/v1/surah/${n}/${await phonId()}`); if (!res.ok) throw 0;
+    const ph = (await res.json()).data.ayahs.map(a => String(a.text).trim());
+    if (n !== 1 && n !== 9 && /^bismi\s+all\S*\s+\S+\s+\S+/i.test(ph[0])) ph[0] = ph[0].split(/\s+/).slice(4).join(" ");              // la basmala n'est pas un verset
+    try { await idbPut("qp:" + n, JSON.stringify(ph)); } catch {}
+    return ph;
+  } catch { return null; }
+}
+let qShow = Object.assign({ar:true, ph:true, fr:true}, store.get("qshow", {})), qOpen = 0;
+function drawQShow() {
+  const r = $("#qRead"); ["ar", "ph", "fr"].forEach(k => r.classList.toggle("hide-" + k, !qShow[k]));
+  const s = $("#qShow"); if (s) s.innerHTML = [["ar", "Arabe"], ["ph", "Phonétique"], ["fr", "Traduction"]].map(([k, l]) => `<button type="button" class="${qShow[k] ? "on" : ""}" data-s="${k}">${l}</button>`).join("");
+}
+async function fillPhon(n) {
+  const els = $$("#qRead .ph"); if (!els.length || els[0].textContent) return;
+  const ph = await getPhon(n); if (qOpen !== n) return;
+  if (!ph) { const m = $("#qPhNote"); if (m) m.textContent = "Phonétique indisponible pour le moment (connexion nécessaire la première fois)."; return; }
+  $$("#qRead .ph").forEach(el => { el.textContent = ph[+el.dataset.i] || ""; });
+}
 $("#qSearch").addEventListener("input", e => qList(e.target.value));
 $("#qList").addEventListener("click", async e => {
   const li = e.target.closest("li[data-n]"); if (!li) return;
-  const n = +li.dataset.n, r = $("#qRead"); $("#qList").hidden = $("#qSearch").hidden = true; r.hidden = false; window.scrollTo(0, 0);
+  const n = +li.dataset.n, r = $("#qRead"); qOpen = n; $("#qList").hidden = $("#qSearch").hidden = true; r.hidden = false; window.scrollTo(0, 0);
   const back = '<button class="ghost" id="qBack">‹ Sourates</button>';
   r.innerHTML = back + `<h3>${n}. ${nm(n)}</h3><p class="muted">Chargement…</p>`;
-  const wire = () => { $("#qBack").onclick = () => { r.hidden = true; $("#qList").hidden = $("#qSearch").hidden = false; }; }; wire();
+  const wire = () => { $("#qBack").onclick = () => { qOpen = 0; r.hidden = true; $("#qList").hidden = $("#qSearch").hidden = false; }; }; wire();
   try {
     const s = await getSurah(n); store.set("qlast", {n});
-    r.innerHTML = back + `<h3>${n}. ${nm(n)} <span class="ar" style="font-size:1.5rem">${SURAHS[n - 1][0]}</span></h3>` + (s.note ? `<p class="muted small">${s.note}</p>` : "") +
-      s.verses.map((v, i) => `<div class="v"><p class="ar">${v.ar} ﴿${i + 1}﴾</p><p>${v.fr}</p></div>`).join(""); wire();
+    r.innerHTML = back + `<h3>${n}. ${nm(n)} <span class="ar" style="font-size:1.5rem">${SURAHS[n - 1][0]}</span></h3><div class="tabs" id="qShow"></div>` +
+      (s.note ? `<p class="muted small">${s.note}. Phonétique : translittération en lettres latines (Al Quran Cloud).</p>` : "") + `<p class="muted small" id="qPhNote"></p>` +
+      s.verses.map((v, i) => `<div class="v"><p class="ar">${v.ar} ﴿${i + 1}﴾</p><p class="ph" data-i="${i}">${v.ph ? esc(v.ph) : ""}</p><p class="fr">${v.fr}</p></div>`).join(""); wire(); drawQShow();
+    $("#qShow").onclick = ev => { const k = ev.target.dataset.s; if (k) { qShow[k] = !qShow[k]; store.set("qshow", qShow); drawQShow(); } };
     if (anim()) gsap.from("#qRead .v:nth-of-type(-n+12)", {opacity:0, y:12, duration:.3, stagger:.05, clearProps:"all"});
+    fillPhon(n);
   } catch { r.innerHTML = back + `<h3>${n}. ${nm(n)}</h3><p class="card">Une connexion est nécessaire pour charger cette sourate la première fois. Elle sera ensuite disponible sans connexion.</p>`; wire(); }
 });
 

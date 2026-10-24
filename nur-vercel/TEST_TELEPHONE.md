@@ -13,7 +13,7 @@ Ouvre l'adresse de ton site Vercel (ou le lien d'aperçu) dans Chrome (Android) 
 - [ ] ⬇ : le fichier arrive dans Téléchargements (Android) ou Fichiers (iPhone). Sinon, le lien « Ouvrir le fichier » apparaît : dis-moi ce que tu vois.
 - [ ] Verrouille l'écran pendant la lecture : les commandes lecture/pause apparaissent-elles ?
 - [ ] ⬇ sur une sourate : le fichier est-il enregistré sur le téléphone (Téléchargements / Fichiers) ?
-- [ ] Coran : ouvre une sourate autre que Al-Fâtiha (connexion nécessaire la 1re fois).
+- [ ] Coran : ouvre une sourate (connexion nécessaire la 1re fois) : arabe, phonétique et traduction s'affichent ? Les boutons Arabe / Phonétique / Traduction masquent-ils bien chaque ligne ? Compare 2 ou 3 versets avec Muslim Pro.
 - [ ] Audio > « Mes fichiers » : ajoute un MP3 nommé 001.mp3, lis-le en mode avion.
 - [ ] Plus > Soutenir NUR : le texte s'affiche bien.
 

@@ -79,3 +79,6 @@ Page « Une idée pour NUR ? » : le bouton ouvre WhatsApp avec le message déj�
 
 ## Numéro de don
 Le numéro n'est plus affiché : bouton « Donner » (ouvre le numéro dans le téléphone, `tel:`) et bouton « Copier ». Il reste présent dans `public/data/don.json` : il est masqué à l'écran, pas secret. Pour un vrai masquage, utiliser un lien de paiement (`url`) fourni par un service de paiement.
+
+## Phonétique des sourates
+Dans la lecture d'une sourate : arabe, phonétique et traduction, chacun affichable ou masquable (réglage conservé). La phonétique est la **translittération en lettres latines** d'Al Quran Cloud, chargée à la première ouverture puis conservée sur l'appareil, comme le texte. Son style suit les conventions anglaises (par exemple « ee » pour « î ») : elle aide à lire, mais elle ne remplace pas l'apprentissage de la récitation auprès d'un enseignant. `python tools/import_quran.py` importe aussi la phonétique dans `quran.json` (prioritaire). L'identifiant exact de l'édition est repéré automatiquement auprès de l'API ; je n'ai pas pu l'essayer avec le vrai service : **à vérifier à la première ouverture d'une sourate sur le site déployé**.
